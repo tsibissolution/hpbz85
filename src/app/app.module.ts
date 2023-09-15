@@ -4,6 +4,9 @@ import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
+import { DisplayComponent } from './layout/display/display.component';
+import { HeaderComponent } from './shared/header/header.component';
+import { MasterComponent } from './views/master/master.component';
 
 
 @NgModule({
@@ -16,6 +19,9 @@ import { AppComponent } from './app.component';
   ],
   declarations: [
     AppComponent,
+    DisplayComponent,
+    HeaderComponent,
+    MasterComponent,
     
   ],
   bootstrap: [
