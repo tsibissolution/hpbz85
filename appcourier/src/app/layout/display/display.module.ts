@@ -1,13 +1,14 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DisplayComponent } from './display.component';
+import { SharedModule } from '../../shared/shared.module';
 
 
 
 @NgModule({
   declarations: [DisplayComponent],
   imports: [
-    CommonModule
+    CommonModule, SharedModule
   ]
 })
 export class DisplayModule { }
