@@ -5,20 +5,21 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 import { DisplayModule } from './layout/display/display.module';
-import { MasterComponent } from './views/master/master.component';
+import { RouterModule } from '@angular/router';
+
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    MasterComponent,
+    
     
     
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    DisplayModule
+    DisplayModule,RouterModule
   ],
   providers: [],
   bootstrap: [AppComponent]
