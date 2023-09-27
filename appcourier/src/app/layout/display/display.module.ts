@@ -11,7 +11,7 @@ import { MasterModule } from '../../views/master/master.module';
 @NgModule({
   declarations: [DisplayComponent],
   imports: [
-    CommonModule, SharedModule,RouterModule, MasterModule
+    CommonModule, SharedModule, MasterModule,RouterModule
   ]
 })
 export class DisplayModule { }

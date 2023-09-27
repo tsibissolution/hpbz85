@@ -8,7 +8,7 @@ const routes: Routes = [
   {
     path: '',
     component: DisplayComponent,
-    children: [{ path: 'master', component: MasterComponent }],
+    children: [{ path: 'master', component: MasterComponent, loadChildren:()=>import('./views/master/master.module').then(m=>m.MasterModule) }],
   },
 ];
 
