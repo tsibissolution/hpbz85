@@ -9,8 +9,7 @@ import { MasterComponent } from './master.component';
 const routes: Routes = [
   {
     path: '', children: [
-      { path: 'partylist', component: PartyComponent },
-      
+      { path: 'partylist', component: PartyComponent },      
       { path: 'partyadd', component: PartyaddComponent },
       { path: 'partyedit', component: PartyeditComponent },
     ],
