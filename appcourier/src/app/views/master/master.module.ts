@@ -7,6 +7,7 @@ import { PartyaddComponent } from './partyadd/partyadd.component';
 import { PartyeditComponent } from './partyedit/partyedit.component';
 
 import { MasterComponent } from './master.component';
+import { AgGridModule } from 'ag-grid-angular';
 
 
 @NgModule({
@@ -18,7 +19,7 @@ import { MasterComponent } from './master.component';
   ],
   imports: [
     CommonModule,
-    MasterRoutingModule, 
+    MasterRoutingModule,AgGridModule
   ]
 })
 export class MasterModule { }

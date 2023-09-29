@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms';
 import { DisplayModule } from './layout/display/display.module';
 import { RouterModule } from '@angular/router';
+import { HttpClientModule } from '@angular/common/http';
 
 
 
@@ -19,7 +20,7 @@ import { RouterModule } from '@angular/router';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    DisplayModule,RouterModule, FormsModule
+    DisplayModule,RouterModule, FormsModule, HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
