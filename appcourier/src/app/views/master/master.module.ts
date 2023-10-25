@@ -8,18 +8,15 @@ import { PartyeditComponent } from './partyedit/partyedit.component';
 
 import { MasterComponent } from './master.component';
 import { AgGridModule } from 'ag-grid-angular';
-
+import { AuthService } from '../../Service/auth.service';
 
 @NgModule({
   declarations: [
     PartyComponent,
     PartyaddComponent,
     PartyeditComponent,
-    MasterComponent
+    MasterComponent,
   ],
-  imports: [
-    CommonModule,
-    MasterRoutingModule,AgGridModule
-  ]
+  imports: [CommonModule, MasterRoutingModule, AgGridModule],
 })
-export class MasterModule { }
+export class MasterModule {}

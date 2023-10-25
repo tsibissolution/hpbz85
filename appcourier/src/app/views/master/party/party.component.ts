@@ -4,6 +4,7 @@ import { CellClickedEvent, ColDef, GridReadyEvent } from 'ag-grid-community';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { AgGridAngular } from 'ag-grid-angular';
+import { AuthService } from '../../../Service/auth.service';
 
 @Component({
   selector: 'app-party',
@@ -29,8 +30,8 @@ export class PartyComponent {
   // For accessing the Grid's API
   @ViewChild(AgGridAngular) agGrid!: AgGridAngular;
 
-  constructor(private http: HttpClient) {}
-
+  constructor(private http: HttpClient, private authservice: AuthService) {}
+  list: any = [];
   // Example load data from server
   onGridReady(params: GridReadyEvent) {
     this.rowData$ = this.http.get<any[]>(
@@ -47,5 +48,12 @@ export class PartyComponent {
   // Example using Grid's API
   clearSelection(): void {
     this.agGrid.api.deselectAll();
+  }
+
+  getListitem() {
+    this.authservice.GetAll().subscribe((res) => {
+      console.log(res);
+      return (this.list = res);
+    });
   }
 }

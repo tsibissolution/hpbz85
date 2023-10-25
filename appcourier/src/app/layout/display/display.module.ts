@@ -6,12 +6,8 @@ import { RouterModule } from '@angular/router';
 import { MasterComponent } from '../../views/master/master.component';
 import { MasterModule } from '../../views/master/master.module';
 
-
-
 @NgModule({
   declarations: [DisplayComponent],
-  imports: [
-    CommonModule, SharedModule, MasterModule,RouterModule
-  ]
+  imports: [CommonModule, SharedModule, MasterModule, RouterModule],
 })
-export class DisplayModule { }
+export class DisplayModule {}
