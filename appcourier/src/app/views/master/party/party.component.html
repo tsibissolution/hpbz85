@@ -13,8 +13,21 @@
   (gridReady)="onGridReady($event)"
   (cellClicked)="onCellClicked($event)"
 ></ag-grid-angular> -->
-<table>
+<table class="table table-bordered">
   <tr>
-    <td *ngfor= "let lists of list">{{list.uid}}</td>
+    <th>Id</th>
+    <th>First Name</th>
+    <th>Last Name</th>
+    <th>Mobile No</th>
+    <th>Email</th>
+    <th>Action</th>
+  </tr>
+  <tr *ngFor="let lists of list">
+    <td>{{ lists.uid }}</td>
+    <td>{{ lists.firstname }}</td>
+    <td>{{ lists.lastname }}</td>
+    <td>{{ lists.mobileno }}</td>
+    <td>{{ lists.email }}</td>
+    <td><a class="btn"><i class="fa fa-home"></i></a></td>
   </tr>
 </table>
