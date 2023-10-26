@@ -47,6 +47,7 @@ export class PartyComponent {
       lastname: new FormControl(''),
       email: new FormControl(''),
       mobileno: new FormControl(''),
+      // id: new FormControl(''),
     });
   }
 
@@ -81,6 +82,7 @@ export class PartyComponent {
     this.mregisterForm.controls['lastname'].setValue(lists.lastname);
     this.mregisterForm.controls['email'].setValue(lists.email);
     this.mregisterForm.controls['mobileno'].setValue(lists.mobileno);
+    // this.mregisterForm.controls['id'].setValue(lists.id);
     console.log(this.mregisterForm.value);
   }
 }
