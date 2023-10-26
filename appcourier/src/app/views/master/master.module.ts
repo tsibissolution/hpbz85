@@ -8,7 +8,8 @@ import { PartyeditComponent } from './partyedit/partyedit.component';
 
 import { MasterComponent } from './master.component';
 import { AgGridModule } from 'ag-grid-angular';
-import { AuthService } from '../../Service/auth.service';
+import { ReactiveFormsModule } from '@angular/forms';
+
 
 @NgModule({
   declarations: [
@@ -17,6 +18,6 @@ import { AuthService } from '../../Service/auth.service';
     PartyeditComponent,
     MasterComponent,
   ],
-  imports: [CommonModule, MasterRoutingModule, AgGridModule],
+  imports: [CommonModule, MasterRoutingModule, AgGridModule, ReactiveFormsModule],
 })
 export class MasterModule {}

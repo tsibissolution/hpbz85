@@ -5,6 +5,12 @@ import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { AgGridAngular } from 'ag-grid-angular';
 import { AuthService } from '../../../Service/auth.service';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 
 @Component({
   selector: 'app-party',
@@ -29,8 +35,21 @@ export class PartyComponent {
 
   // For accessing the Grid's API
   @ViewChild(AgGridAngular) agGrid!: AgGridAngular;
-
+  mregisterForm!: FormGroup;
   constructor(private http: HttpClient, private authservice: AuthService) {}
+  ngOnInit() {
+    this.authservice.GetAll().subscribe((res) => {
+      console.log(res);
+      return (this.list = res);
+    });
+    this.mregisterForm = new FormGroup({
+      firstname: new FormControl('', [Validators.required]),
+      lastname: new FormControl(''),
+      email: new FormControl(''),
+      mobileno: new FormControl(''),
+    });
+  }
+
   list: any = [];
   // Example load data from server
   onGridReady(params: GridReadyEvent) {
@@ -50,10 +69,18 @@ export class PartyComponent {
     this.agGrid.api.deselectAll();
   }
 
-  getListitem() {
-    this.authservice.GetAll().subscribe((res) => {
-      console.log(res);
-      return (this.list = res);
-    });
+  // getListitem() {
+  //   this.authservice.GetAll().subscribe((res) => {
+  //     console.log(res);
+  //     return (this.list = res);
+  //   });
+  // }
+
+  onEdit(lists: any) {
+    this.mregisterForm.controls['firstname'].setValue(lists.firstname);
+    this.mregisterForm.controls['lastname'].setValue(lists.lastname);
+    this.mregisterForm.controls['email'].setValue(lists.email);
+    this.mregisterForm.controls['mobileno'].setValue(lists.mobileno);
+    console.log(this.mregisterForm.value);
   }
 }
