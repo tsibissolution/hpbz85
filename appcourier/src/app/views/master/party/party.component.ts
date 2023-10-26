@@ -35,19 +35,24 @@ export class PartyComponent {
 
   // For accessing the Grid's API
   @ViewChild(AgGridAngular) agGrid!: AgGridAngular;
+  @ViewChild('closebutton') closebutton: any;
   mregisterForm!: FormGroup;
+  formdata: any;
   constructor(private http: HttpClient, private authservice: AuthService) {}
   ngOnInit() {
-    this.authservice.GetAll().subscribe((res) => {
-      console.log(res);
-      return (this.list = res);
-    });
+    this.getListitem();
     this.mregisterForm = new FormGroup({
       firstname: new FormControl('', [Validators.required]),
       lastname: new FormControl(''),
       email: new FormControl(''),
       mobileno: new FormControl(''),
-      // id: new FormControl(''),
+      uid: new FormControl(''),
+      username: new FormControl(''),
+      password: new FormControl(''),
+      cpassword: new FormControl(''),
+      utype: new FormControl(''),
+      status: new FormControl(''),
+      log_year: new FormControl(''),
     });
   }
 
@@ -70,19 +75,37 @@ export class PartyComponent {
     this.agGrid.api.deselectAll();
   }
 
-  // getListitem() {
-  //   this.authservice.GetAll().subscribe((res) => {
-  //     console.log(res);
-  //     return (this.list = res);
-  //   });
-  // }
+  getListitem() {
+    this.authservice.GetAll().subscribe((res) => {
+      console.log(res);
+      return (this.list = res);
+    });
+  }
 
   onEdit(lists: any) {
     this.mregisterForm.controls['firstname'].setValue(lists.firstname);
     this.mregisterForm.controls['lastname'].setValue(lists.lastname);
     this.mregisterForm.controls['email'].setValue(lists.email);
     this.mregisterForm.controls['mobileno'].setValue(lists.mobileno);
-    // this.mregisterForm.controls['id'].setValue(lists.id);
-    console.log(this.mregisterForm.value);
+    this.mregisterForm.controls['uid'].setValue(lists.uid);
+    this.mregisterForm.controls['username'].setValue(lists.username);
+    this.mregisterForm.controls['password'].setValue(lists.password);
+    this.mregisterForm.controls['cpassword'].setValue(lists.cpassword);
+    this.mregisterForm.controls['utype'].setValue(lists.utype);
+    this.mregisterForm.controls['status'].setValue(lists.status);
+    this.mregisterForm.controls['log_year'].setValue(lists.log_year);
+  }
+
+  onEditSubmit() {
+    this.formdata = JSON.stringify(this.mregisterForm.value);
+    console.log(this.formdata);
+
+    this.authservice
+      .updatemRegister(this.mregisterForm.value)
+      .subscribe((res) => {
+        this.closebutton.nativeElement.click();
+        this.getListitem();
+        return (this.formdata = res);
+      });
   }
 }
