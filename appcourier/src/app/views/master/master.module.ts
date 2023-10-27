@@ -8,7 +8,8 @@ import { PartyeditComponent } from './partyedit/partyedit.component';
 
 import { MasterComponent } from './master.component';
 import { AgGridModule } from 'ag-grid-angular';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 
 @NgModule({
@@ -18,6 +19,6 @@ import { ReactiveFormsModule } from '@angular/forms';
     PartyeditComponent,
     MasterComponent,
   ],
-  imports: [CommonModule, MasterRoutingModule, AgGridModule, ReactiveFormsModule],
+  imports: [CommonModule, MasterRoutingModule, AgGridModule, ReactiveFormsModule, NgxPaginationModule,FormsModule],
 })
 export class MasterModule {}

@@ -38,6 +38,8 @@ export class PartyComponent {
   @ViewChild('closebutton') closebutton: any;
   mregisterForm!: FormGroup;
   formdata: any;
+  p: number = 1;
+  searchtext: any;
   constructor(private http: HttpClient, private authservice: AuthService) {}
   ngOnInit() {
     this.getListitem();
@@ -107,5 +109,12 @@ export class PartyComponent {
         this.getListitem();
         return (this.formdata = res);
       });
+  }
+  onDeleteAction() {}
+
+  Search() {
+    if (this.searchtext == '') {
+      this.getListitem();
+    }
   }
 }

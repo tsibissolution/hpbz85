@@ -5,3 +5,9 @@ html, body {
   box-sizing: border-box;
   -webkit-overflow-scrolling: touch;
 }
+.btn-success{
+  background-color: #157347 !important;
+}
+.btn-danger{
+  background-color: #bb2d3b !important;
+}
