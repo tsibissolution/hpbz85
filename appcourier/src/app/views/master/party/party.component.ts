@@ -111,7 +111,7 @@ export class PartyComponent {
       });
   }
   onDeleteAction() {}
-
+  filterTerm!: string;
   Search() {
     if (this.searchtext == '') {
       this.getListitem();

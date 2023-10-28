@@ -11,7 +11,6 @@ import { AgGridModule } from 'ag-grid-angular';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgxPaginationModule } from 'ngx-pagination';
 
-
 @NgModule({
   declarations: [
     PartyComponent,
@@ -19,6 +18,13 @@ import { NgxPaginationModule } from 'ngx-pagination';
     PartyeditComponent,
     MasterComponent,
   ],
-  imports: [CommonModule, MasterRoutingModule, AgGridModule, ReactiveFormsModule, NgxPaginationModule,FormsModule],
+  imports: [
+    CommonModule,
+    MasterRoutingModule,
+    AgGridModule,
+    ReactiveFormsModule,
+    NgxPaginationModule,
+    FormsModule,
+  ],
 })
 export class MasterModule {}
