@@ -39,7 +39,10 @@ export class PartyComponent {
   mregisterForm!: FormGroup;
   formdata: any;
   p: number = 1;
-  searchtext: any;
+  firstna: any;
+  lastna: any;
+  mobile: any;
+  emal: any;
   constructor(private http: HttpClient, private authservice: AuthService) {}
   ngOnInit() {
     this.getListitem();
@@ -59,23 +62,7 @@ export class PartyComponent {
   }
 
   list: any = [];
-  // Example load data from server
-  onGridReady(params: GridReadyEvent) {
-    this.rowData$ = this.http.get<any[]>(
-      'https://www.ag-grid.com/example-assets/row-data.json'
-    );
-    console.log(this.rowData$);
-  }
-
-  // Example of consuming Grid Event
-  onCellClicked(e: CellClickedEvent): void {
-    console.log('cellClicked', e);
-  }
-
-  // Example using Grid's API
-  clearSelection(): void {
-    this.agGrid.api.deselectAll();
-  }
+  
 
   getListitem() {
     this.authservice.GetAll().subscribe((res) => {
@@ -112,9 +99,22 @@ export class PartyComponent {
   }
   onDeleteAction() {}
   filterTerm!: string;
-  Search() {
-    if (this.searchtext == '') {
+  param: any;
+  Search(value:any) {
+    if (this.firstna == '' && this.lastna == '' && this.mobile == '' && this.emal == '') {
       this.getListitem();
+    }else{
+      if(this.firstna == undefined){this.firstna = ''}
+      if(this.lastna == undefined){this.lastna = ''}
+      if(this.mobile == undefined){this.mobile = ''}
+      if(this.emal == undefined){this.emal = ''}
+      this.param={
+        firstname: this.firstna, lastname: this.lastna, mobileno: this.mobile, email:this.emal
+      }
+      console.log(this.param);
+      this.authservice.filterSearch(this.param).subscribe((res)=>{
+        return this.list= res;
+      })
     }
   }
 }

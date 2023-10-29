@@ -14,7 +14,12 @@ export class AuthService {
     return this.httpSrvice.get(this.API_URL + 'getAll');
   }
 
-  updatemRegister(inputdata:any){
+  filterSearch(inputdata: any) {
+    
+    return this.httpSrvice.post(this.API_URL + 'getFiterData', inputdata);
+  }
+
+  updatemRegister(inputdata: any) {
     return this.httpSrvice.patch(this.API_URL + 'updateRegister', inputdata);
   }
   processRegistertion(inputdata: any) {

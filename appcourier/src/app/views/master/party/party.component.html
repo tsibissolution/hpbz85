@@ -12,19 +12,11 @@
   (gridReady)="onGridReady($event)"
   (cellClicked)="onCellClicked($event)"
 ></ag-grid-angular> -->
-<nav class="navbar">
-  <input
-    type="text"
-    class="form-control"
-    name="searchtext"
-    [(ngModel)]="searchtext"
-    placeholder="Enter First Name"
-  />
-</nav>
+<nav class="navbar"></nav>
 <table class="table table-bordered">
   <thead class="table-dark">
     <tr>
-      <th>Id</th>
+      <th style="width:50px;">Id</th>
       <th>First Name</th>
       <th>Last Name</th>
       <th>Mobile No</th>
@@ -33,6 +25,61 @@
       <th>Action</th>
     </tr>
   </thead>
+  <tr>
+    <td>
+      <input
+        type="text"
+        class="form-control"
+        placeholder="Enter First Name"
+        style="height: 26px;font-size: 14px;"
+      />
+    </td>
+    <td>
+      <input
+        type="text"
+        class="form-control"
+        name="firstna"
+        [(ngModel)]="firstna"
+        (ngModelChange)="Search($event)"
+        placeholder="Enter First Name"
+        style="height: 26px;font-size: 14px;"
+      />
+    </td>
+    <td>
+      <input
+        type="text"
+        class="form-control"
+        name="lastna"
+        [(ngModel)]="lastna"
+        (ngModelChange)="Search($event)"
+        placeholder="Enter Last Name"
+        style="height: 26px;font-size: 14px;"
+      />
+    </td>
+    <td>
+      <input
+        type="text"
+        class="form-control"
+        name="mobile"
+        [(ngModel)]="mobile"
+        (ngModelChange)="Search($event)"
+        placeholder="Enter Mobile No"
+        style="height: 26px;font-size: 14px;"
+      />
+    </td>
+    <td>
+      <input
+        type="text"
+        class="form-control"
+        name="emal"
+        [(ngModel)]="emal"
+        (ngModelChange)="Search($event)"
+        placeholder="Enter Email"
+        style="height: 26px;font-size: 14px;"
+      />
+    </td>
+    <td></td>
+  </tr>
   <tr
     *ngFor="let lists of list | paginate: { itemsPerPage: 5, currentPage: p }"
   >
@@ -62,7 +109,10 @@
       </button>
     </td>
   </tr>
-  <pagination-controls (pageChange)="p = $event"></pagination-controls>
+  <tr><td colspan="5">
+    <pagination-controls (pageChange)="p = $event"></pagination-controls></td>
+    <td colspan="2"><button><i class="fa fa-indent text-success"></i>Add</button></td>
+  </tr>
 </table>
 
 <!-- modal -->
