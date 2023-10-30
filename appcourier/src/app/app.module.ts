@@ -8,21 +8,17 @@ import { DisplayModule } from './layout/display/display.module';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 
-
-
 @NgModule({
-  declarations: [
-    AppComponent,
-    
-    
-    
-  ],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    DisplayModule,RouterModule, FormsModule, HttpClientModule, 
+    DisplayModule,
+    RouterModule,
+    FormsModule,
+    HttpClientModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

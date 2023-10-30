@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PartyeditComponent } from './partyedit.component';
+import { MraccountComponent } from './mraccount.component';
 
-describe('PartyeditComponent', () => {
-  let component: PartyeditComponent;
-  let fixture: ComponentFixture<PartyeditComponent>;
+describe('MraccountComponent', () => {
+  let component: MraccountComponent;
+  let fixture: ComponentFixture<MraccountComponent>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [PartyeditComponent]
+      declarations: [MraccountComponent]
     });
-    fixture = TestBed.createComponent(PartyeditComponent);
+    fixture = TestBed.createComponent(MraccountComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

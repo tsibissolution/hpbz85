@@ -1,0 +1,13 @@
+html, body {
+  height: 100%;
+  width: 100%;
+  padding: 5px;
+  box-sizing: border-box;
+  -webkit-overflow-scrolling: touch;
+}
+.btn-success{
+  background-color: #157347 !important;
+}
+.btn-danger{
+  background-color: #bb2d3b !important;
+}

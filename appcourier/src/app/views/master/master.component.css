@@ -1,4 +1,10 @@
-.card-body{
+.card-body {
   min-height: 400px !important;
-  
+}
+.nav-link {
+  padding: 18px 24px;
+  margin: 10px 0px;
+}
+.nav-link:hover {
+  background-color: aquamarine;
 }

@@ -1,0 +1,219 @@
+<nav class="navbar">
+  <button class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal">
+    <i class="fa fa-indent text-success"></i>Add
+  </button>
+</nav>
+<table class="table table-bordered">
+  <thead class="table-dark">
+    <tr>
+      <th style="width:50px;">Id</th>
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th>Mobile No</th>
+      <th>Email</th>
+      <th>Status</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tr>
+    <td>
+      <input
+        type="text"
+        class="form-control"
+        placeholder="Enter First Name"
+        style="height: 26px;font-size: 14px;"
+      />
+    </td>
+    <td>
+      <input
+        type="text"
+        class="form-control"
+        name="firstna"
+        [(ngModel)]="firstna"
+        (ngModelChange)="Search($event)"
+        placeholder="Enter First Name"
+        style="height: 26px;font-size: 14px;"
+      />
+    </td>
+    <td>
+      <input
+        type="text"
+        class="form-control"
+        name="lastna"
+        [(ngModel)]="lastna"
+        (ngModelChange)="Search($event)"
+        placeholder="Enter Last Name"
+        style="height: 26px;font-size: 14px;"
+      />
+    </td>
+    <td>
+      <input
+        type="text"
+        class="form-control"
+        name="mobile"
+        [(ngModel)]="mobile"
+        (ngModelChange)="Search($event)"
+        placeholder="Enter Mobile No"
+        style="height: 26px;font-size: 14px;"
+      />
+    </td>
+    <td>
+      <input
+        type="text"
+        class="form-control"
+        name="emal"
+        [(ngModel)]="emal"
+        (ngModelChange)="Search($event)"
+        placeholder="Enter Email"
+        style="height: 26px;font-size: 14px;"
+      />
+    </td>
+    <td></td>
+  </tr>
+  <tr
+    *ngFor="let lists of list | paginate: { itemsPerPage: 10, currentPage: p }"
+  >
+    <td class="text-center">{{ lists.uid }}</td>
+    <td>{{ lists.firstname }}</td>
+    <td>{{ lists.lastname }}</td>
+    <td>{{ lists.mobileno }}</td>
+    <td>{{ lists.email }}</td>
+    <td *ngIf="lists.status == 0">
+      <button class="btn btn-sm btn-danger">Not Approved</button>
+    </td>
+    <td *ngIf="lists.status == 1" class="text-center">
+      <button class="btn btn-sm btn-success">Approved</button>
+    </td>
+
+    <td class="text-center">
+      <button
+        class="btn"
+        data-bs-toggle="modal"
+        data-bs-target="#exampleModal"
+        (click)="onEdit(lists)"
+      >
+        <i class="fa fa-edit text-info"></i>
+      </button>
+      <button class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        <i class="fa fa-trash-o text-danger"></i>
+      </button>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="7">
+      <pagination-controls (pageChange)="p = $event"></pagination-controls>
+    </td>
+  </tr>
+</table>
+
+<!-- modal -->
+
+<!-- Button trigger modal -->
+
+<!-- Modal -->
+<div
+  class="modal fade"
+  id="exampleModal"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Registration Form</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          #closebutton
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="mregisterForm">
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label"
+              >First Name</label
+            >
+            <input
+              type="text"
+              class="form-control"
+              id="exampleInputEmail1"
+              aria-describedby="emailHelp"
+              formControlName="firstname"
+            />
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label"
+              >Last Name</label
+            >
+            <input
+              type="text"
+              class="form-control"
+              id="exampleInputPassword1"
+              formControlName="lastname"
+            />
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label"
+              >User Name</label
+            >
+            <input
+              type="text"
+              class="form-control"
+              id="exampleInputPassword1"
+              formControlName="username"
+            />
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label"
+              >Password
+            </label>
+            <input
+              type="text"
+              class="form-control"
+              id="exampleInputPassword1"
+              formControlName="password"
+            />
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Email</label>
+            <input
+              type="text"
+              class="form-control"
+              id="exampleInputPassword1"
+              formControlName="email"
+            />
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label"
+              >Mobile No</label
+            >
+            <input
+              type="text"
+              class="form-control"
+              id="exampleInputPassword1"
+              formControlName="mobileno"
+            />
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Status</label>
+            <select formControlName="status" class="form-control">
+              <option value="1">Approved</option>
+              <option value="0">Not Approved</option>
+            </select>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+          Close
+        </button>
+        <button type="submit" class="btn btn-primary" (click)="onEditSubmit()">
+          Submit
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

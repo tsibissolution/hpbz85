@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PartyaddComponent } from './partyadd.component';
+import { RegisterComponent } from './register.component';
 
-describe('PartyaddComponent', () => {
-  let component: PartyaddComponent;
-  let fixture: ComponentFixture<PartyaddComponent>;
+describe('RegisterComponent', () => {
+  let component: RegisterComponent;
+  let fixture: ComponentFixture<RegisterComponent>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [PartyaddComponent]
+      declarations: [RegisterComponent]
     });
-    fixture = TestBed.createComponent(PartyaddComponent);
+    fixture = TestBed.createComponent(RegisterComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

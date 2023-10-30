@@ -1,20 +1,40 @@
 <div class="container-fluid">
-  <div class="card">
-    <div class="card-header">
-      <ul class="nav nav-pills">
+  <div class="row card-body">
+    <div class="col-sm-2">
+      <!-- <nav class="nav flex-column ">
         <li class="nav-item">
-          <a class="nav-link active" routerLink="partylist">Party List</a>
+          <a class="nav-link active"  aria-current="page" routerLink="partylist">Party Account</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLink="partyadd">Party Add</a>
+          <a class="nav-link" routerLink="mraccount">Field Staff Account</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLink="partyedit">Party Edit</a>
+          <a class="nav-link" routerLink="transport">Transport Details</a>
         </li>
-      </ul>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="sampleprod">Sample Product</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="company">Company Account</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="destination">Destination Area</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="register">Sign Up Account</a>
+        </li>
+      </nav> -->
+      <nav class="nav flex-column">
+        <a class="nav-link active"  aria-current="page" routerLink="partylist">Party Account</a>
+        <a class="nav-link" routerLink="mraccount">Field Staff Account</a>
+        <a class="nav-link" routerLink="transport">Transport Details</a>
+        <a class="nav-link" routerLink="register">Sign Up Account</a>
+      </nav>
     </div>
-    <div class="card-body rounded">
+    
+    <div class="col-sm-10 rounded active">
       <router-outlet></router-outlet>
     </div>
+  
   </div>
 </div>
