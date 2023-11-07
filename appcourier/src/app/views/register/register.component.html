@@ -71,7 +71,7 @@
     <td></td>
   </tr>
   <tr
-    *ngFor="let lists of list | paginate: { itemsPerPage: 5, currentPage: p }"
+    *ngFor="let lists of list.data | paginate: { itemsPerPage: 5, currentPage: p }"
   >
     <td class="text-center">{{ lists.uid }}</td>
     <td>{{ lists.firstname }}</td>

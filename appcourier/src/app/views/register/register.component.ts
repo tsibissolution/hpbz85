@@ -6,7 +6,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
-  styleUrls: ['./register.component.css']
+  styleUrls: ['./register.component.css'],
 })
 export class RegisterComponent {
   @ViewChild('closebutton') closebutton: any;
@@ -36,7 +36,6 @@ export class RegisterComponent {
   }
 
   list: any = [];
-  
 
   getListitem() {
     this.authservice.GetAllParty().subscribe((res) => {
@@ -74,21 +73,37 @@ export class RegisterComponent {
   onDeleteAction() {}
   filterTerm!: string;
   param: any;
-  Search(value:any) {
-    if (this.firstna == '' && this.lastna == '' && this.mobile == '' && this.emal == '') {
+  Search(value: any) {
+    if (
+      this.firstna == '' &&
+      this.lastna == '' &&
+      this.mobile == '' &&
+      this.emal == ''
+    ) {
       this.getListitem();
-    }else{
-      if(this.firstna == undefined){this.firstna = ''}
-      if(this.lastna == undefined){this.lastna = ''}
-      if(this.mobile == undefined){this.mobile = ''}
-      if(this.emal == undefined){this.emal = ''}
-      this.param={
-        firstname: this.firstna, lastname: this.lastna, mobileno: this.mobile, email:this.emal
+    } else {
+      if (this.firstna == undefined) {
+        this.firstna = '';
       }
+      if (this.lastna == undefined) {
+        this.lastna = '';
+      }
+      if (this.mobile == undefined) {
+        this.mobile = '';
+      }
+      if (this.emal == undefined) {
+        this.emal = '';
+      }
+      this.param = {
+        firstname: this.firstna,
+        lastname: this.lastna,
+        mobileno: this.mobile,
+        email: this.emal,
+      };
       console.log(this.param);
-      this.authservice.filterSearch(this.param).subscribe((res)=>{
-        return this.list= res;
-      })
+      this.authservice.filterSearch(this.param).subscribe((res) => {
+        return (this.list = res);
+      });
     }
   }
 }

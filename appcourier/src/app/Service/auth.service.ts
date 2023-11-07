@@ -11,11 +11,10 @@ export class AuthService {
   API_URL = Environments.apiUrl;
   inputdata: any;
   GetAllParty() {
-    return this.httpSrvice.get(this.API_URL + 'getAll');
+    return this.httpSrvice.get(this.API_URL + 'getAllMregister');
   }
 
   filterSearch(inputdata: any) {
-    
     return this.httpSrvice.post(this.API_URL + 'getFiterData', inputdata);
   }
 
