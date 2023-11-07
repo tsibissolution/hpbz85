@@ -10,7 +10,7 @@ export class AuthService {
 
   API_URL = Environments.apiUrl;
   inputdata: any;
-  GetAllParty() {
+  GetAllMregister() {
     return this.httpSrvice.get(this.API_URL + 'getAllMregister');
   }
 

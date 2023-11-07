@@ -38,7 +38,7 @@ export class RegisterComponent {
   list: any = [];
 
   getListitem() {
-    this.authservice.GetAllParty().subscribe((res) => {
+    this.authservice.GetAllMregister().subscribe((res) => {
       console.log(res);
       return (this.list = res);
     });
