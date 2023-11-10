@@ -10,6 +10,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 })
 export class RegisterComponent {
   @ViewChild('closebutton') closebutton: any;
+
   mregisterForm!: FormGroup;
   formdata: any;
   p: number = 1;
@@ -17,6 +18,8 @@ export class RegisterComponent {
   lastna: any;
   mobile: any;
   emal: any;
+  showAdd!: boolean;
+  showEdit!: boolean;
   constructor(private http: HttpClient, private authservice: AuthService) {}
   ngOnInit() {
     this.getListitem();
@@ -37,6 +40,12 @@ export class RegisterComponent {
 
   list: any = [];
 
+  onAddClicked() {
+    this.mregisterForm.reset();
+    this.showAdd = true;
+    this.showEdit = false;
+  }
+
   getListitem() {
     this.authservice.GetAllMregister().subscribe((res) => {
       console.log(res);
@@ -56,6 +65,8 @@ export class RegisterComponent {
     this.mregisterForm.controls['utype'].setValue(lists.utype);
     this.mregisterForm.controls['status'].setValue(lists.status);
     this.mregisterForm.controls['log_year'].setValue(lists.log_year);
+    this.showEdit = true;
+    this.showAdd = false;
   }
 
   onEditSubmit() {
@@ -67,10 +78,28 @@ export class RegisterComponent {
       .subscribe((res) => {
         this.closebutton.nativeElement.click();
         this.getListitem();
+        this.mregisterForm.reset();
         return (this.formdata = res);
       });
   }
-  onDeleteAction() {}
+  onAddSubmit() {
+    this.authservice
+      .createmRegister(this.mregisterForm.value)
+      .subscribe((res) => {
+        this.closebutton.nativeElement.click();
+        this.getListitem();
+        this.mregisterForm.reset();
+        return (this.formdata = res);
+      });
+  }
+  onDeleteAction(lists:any) {
+    let x = lists.uid;
+    console.log(x);
+    // this.authservice.deleteRegister(lists).subscribe((res) => {
+    //   this.getListitem();
+    //   return res;
+    // });
+  }
   filterTerm!: string;
   param: any;
   Search(value: any) {

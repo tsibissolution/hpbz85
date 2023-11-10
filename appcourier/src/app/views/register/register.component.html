@@ -1,5 +1,10 @@
 <nav class="navbar">
-  <button class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal">
+  <button
+    class="btn"
+    data-bs-toggle="modal"
+    data-bs-target="#exampleModal"
+    (click)="onAddClicked()"
+  >
     <i class="fa fa-indent text-success"></i>Add
   </button>
 </nav>
@@ -71,7 +76,9 @@
     <td></td>
   </tr>
   <tr
-    *ngFor="let lists of list.data | paginate: { itemsPerPage: 5, currentPage: p }"
+    *ngFor="
+      let lists of list.data | paginate: { itemsPerPage: 5, currentPage: p }
+    "
   >
     <td class="text-center">{{ lists.uid }}</td>
     <td>{{ lists.firstname }}</td>
@@ -94,7 +101,11 @@
       >
         <i class="fa fa-edit text-info"></i>
       </button>
-      <button class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal">
+      <button
+        class="btn"
+        data-bs-toggle="modal"
+        (click)="onDeleteAction(lists)"
+      >
         <i class="fa fa-trash-o text-danger"></i>
       </button>
     </td>
@@ -210,8 +221,21 @@
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
           Close
         </button>
-        <button type="submit" class="btn btn-primary" (click)="onEditSubmit()">
-          Submit
+        <button
+          type="submit"
+          *ngIf="showAdd"
+          class="btn btn-primary"
+          (click)="onAddSubmit()"
+        >
+          Add
+        </button>
+        <button
+          type="submit"
+          *ngIf="showEdit"
+          class="btn btn-success"
+          (click)="onEditSubmit()"
+        >
+          Update
         </button>
       </div>
     </div>

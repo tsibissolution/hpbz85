@@ -19,8 +19,17 @@ export class AuthService {
   }
 
   updatemRegister(inputdata: any) {
-    return this.httpSrvice.patch(this.API_URL + 'updateRegister', inputdata);
+    return this.httpSrvice.patch(this.API_URL + 'updateMregister', inputdata);
   }
+
+  createmRegister(inputdata: any) {
+    return this.httpSrvice.post(this.API_URL + 'createMregister', inputdata);
+  }
+
+  deleteRegister(inputdata: any) {
+    return this.httpSrvice.post(this.API_URL + 'deleteMregister', inputdata);
+  }
+
   processRegistertion(inputdata: any) {
     return this.httpSrvice.post(this.API_URL + 'register', inputdata);
   }
