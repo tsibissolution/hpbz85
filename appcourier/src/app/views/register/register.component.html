@@ -1,10 +1,5 @@
 <nav class="navbar">
-  <button
-    class="btn"
-    data-bs-toggle="modal"
-    data-bs-target="#exampleModal"
-    (click)="onAddClicked()"
-  >
+  <button class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="onAddClicked()">
     <i class="fa fa-indent text-success"></i>Add
   </button>
 </nav>
@@ -22,64 +17,29 @@
   </thead>
   <tr>
     <td>
-      <input
-        type="text"
-        class="form-control"
-        placeholder="Enter First Name"
-        style="height: 26px;font-size: 14px;"
-      />
+      <input type="text" class="form-control" placeholder="Enter First Name" style="height: 26px;font-size: 14px;" />
     </td>
     <td>
-      <input
-        type="text"
-        class="form-control"
-        name="firstna"
-        [(ngModel)]="firstna"
-        (ngModelChange)="Search($event)"
-        placeholder="Enter First Name"
-        style="height: 26px;font-size: 14px;"
-      />
+      <input type="text" class="form-control" name="firstna" [(ngModel)]="firstna" (ngModelChange)="Search($event)"
+        placeholder="Enter First Name" style="height: 26px;font-size: 14px;" />
     </td>
     <td>
-      <input
-        type="text"
-        class="form-control"
-        name="lastna"
-        [(ngModel)]="lastna"
-        (ngModelChange)="Search($event)"
-        placeholder="Enter Last Name"
-        style="height: 26px;font-size: 14px;"
-      />
+      <input type="text" class="form-control" name="lastna" [(ngModel)]="lastna" (ngModelChange)="Search($event)"
+        placeholder="Enter Last Name" style="height: 26px;font-size: 14px;" />
     </td>
     <td>
-      <input
-        type="text"
-        class="form-control"
-        name="mobile"
-        [(ngModel)]="mobile"
-        (ngModelChange)="Search($event)"
-        placeholder="Enter Mobile No"
-        style="height: 26px;font-size: 14px;"
-      />
+      <input type="text" class="form-control" name="mobile" [(ngModel)]="mobile" (ngModelChange)="Search($event)"
+        placeholder="Enter Mobile No" style="height: 26px;font-size: 14px;" />
     </td>
     <td>
-      <input
-        type="text"
-        class="form-control"
-        name="emal"
-        [(ngModel)]="emal"
-        (ngModelChange)="Search($event)"
-        placeholder="Enter Email"
-        style="height: 26px;font-size: 14px;"
-      />
+      <input type="text" class="form-control" name="emal" [(ngModel)]="emal" (ngModelChange)="Search($event)"
+        placeholder="Enter Email" style="height: 26px;font-size: 14px;" />
     </td>
     <td></td>
   </tr>
-  <tr
-    *ngFor="
+  <tr *ngFor="
       let lists of list.data | paginate: { itemsPerPage: 5, currentPage: p }
-    "
-  >
+    ">
     <td class="text-center">{{ lists.uid }}</td>
     <td>{{ lists.firstname }}</td>
     <td>{{ lists.lastname }}</td>
@@ -93,19 +53,10 @@
     </td>
 
     <td class="text-center">
-      <button
-        class="btn"
-        data-bs-toggle="modal"
-        data-bs-target="#exampleModal"
-        (click)="onEdit(lists)"
-      >
+      <button class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="onEdit(lists)">
         <i class="fa fa-edit text-info"></i>
       </button>
-      <button
-        class="btn"
-        data-bs-toggle="modal"
-        (click)="onDeleteAction(lists)"
-      >
+      <button class="btn"  (click)="onDeleteAction(lists)">
         <i class="fa fa-trash-o text-danger"></i>
       </button>
     </td>
@@ -122,91 +73,45 @@
 <!-- Button trigger modal -->
 
 <!-- Modal -->
-<div
-  class="modal fade"
-  id="exampleModal"
-  tabindex="-1"
-  aria-labelledby="exampleModalLabel"
-  aria-hidden="true"
->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">Registration Form</h5>
-        <button
-          type="button"
-          class="btn-close"
-          data-bs-dismiss="modal"
-          #closebutton
-          aria-label="Close"
-        ></button>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" #closebutton aria-label="Close"></button>
       </div>
       <div class="modal-body">
         <form [formGroup]="mregisterForm">
           <div class="mb-3">
-            <label for="exampleInputEmail1" class="form-label"
-              >First Name</label
-            >
-            <input
-              type="text"
-              class="form-control"
-              id="exampleInputEmail1"
-              aria-describedby="emailHelp"
-              formControlName="firstname"
-            />
+            <label for="exampleInputEmail1" class="form-label">First Name</label>
+            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+              formControlName="firstname" />
+              <div *ngIf="mregisterForm.controls['firstname'].invalid && (mregisterForm.controls['firstname'].dirty || mregisterForm.controls['firstname'].touched)" class="alert alert-danger">
+                <div *ngIf="mregisterForm.controls['firstname'].errors?.required">
+                  email is required.
+                </div>
+            </div>
           </div>
           <div class="mb-3">
-            <label for="exampleInputPassword1" class="form-label"
-              >Last Name</label
-            >
-            <input
-              type="text"
-              class="form-control"
-              id="exampleInputPassword1"
-              formControlName="lastname"
-            />
+            <label for="exampleInputPassword1" class="form-label">Last Name</label>
+            <input type="text" class="form-control" id="exampleInputPassword1" formControlName="lastname" />
           </div>
           <div class="mb-3">
-            <label for="exampleInputPassword1" class="form-label"
-              >User Name</label
-            >
-            <input
-              type="text"
-              class="form-control"
-              id="exampleInputPassword1"
-              formControlName="username"
-            />
+            <label for="exampleInputPassword1" class="form-label">User Name</label>
+            <input type="text" class="form-control" id="exampleInputPassword1" formControlName="username" />
           </div>
           <div class="mb-3">
-            <label for="exampleInputPassword1" class="form-label"
-              >Password
+            <label for="exampleInputPassword1" class="form-label">Password
             </label>
-            <input
-              type="text"
-              class="form-control"
-              id="exampleInputPassword1"
-              formControlName="password"
-            />
+            <input type="text" class="form-control" id="exampleInputPassword1" formControlName="password" />
           </div>
           <div class="mb-3">
             <label for="exampleInputPassword1" class="form-label">Email</label>
-            <input
-              type="text"
-              class="form-control"
-              id="exampleInputPassword1"
-              formControlName="email"
-            />
+            <input type="text" class="form-control" id="exampleInputPassword1" formControlName="email" />
           </div>
           <div class="mb-3">
-            <label for="exampleInputPassword1" class="form-label"
-              >Mobile No</label
-            >
-            <input
-              type="text"
-              class="form-control"
-              id="exampleInputPassword1"
-              formControlName="mobileno"
-            />
+            <label for="exampleInputPassword1" class="form-label">Mobile No</label>
+            <input type="text" class="form-control" id="exampleInputPassword1" formControlName="mobileno" />
           </div>
           <div class="mb-3">
             <label for="exampleInputPassword1" class="form-label">Status</label>
@@ -221,20 +126,10 @@
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
           Close
         </button>
-        <button
-          type="submit"
-          *ngIf="showAdd"
-          class="btn btn-primary"
-          (click)="onAddSubmit()"
-        >
+        <button type="submit" *ngIf="showAdd" class="btn btn-primary" (click)="onAddSubmit()">
           Add
         </button>
-        <button
-          type="submit"
-          *ngIf="showEdit"
-          class="btn btn-success"
-          (click)="onEditSubmit()"
-        >
+        <button type="submit" *ngIf="showEdit" class="btn btn-success" (click)="onEditSubmit()">
           Update
         </button>
       </div>

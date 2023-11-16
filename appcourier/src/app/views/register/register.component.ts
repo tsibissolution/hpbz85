@@ -3,6 +3,7 @@ import { AuthService } from '../../Service/auth.service';
 import { HttpClient } from '@angular/common/http';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -20,7 +21,7 @@ export class RegisterComponent {
   emal: any;
   showAdd!: boolean;
   showEdit!: boolean;
-  constructor(private http: HttpClient, private authservice: AuthService) {}
+  constructor(private http: HttpClient, private authservice: AuthService) { }
   ngOnInit() {
     this.getListitem();
     this.mregisterForm = new FormGroup({
@@ -70,35 +71,130 @@ export class RegisterComponent {
   }
 
   onEditSubmit() {
-    this.formdata = JSON.stringify(this.mregisterForm.value);
+    if (this.mregisterForm.valid) {
+      Swal.fire({
+        title: 'Are you sure?',
+        text: 'You want to Update this Records!',
+        icon: 'info',
+        showCancelButton: true,
+        confirmButtonColor: '#1ba564',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, Update it!',
+      }).then((result) => {
+        if (result.isConfirmed) {
+          this.authservice
+            .updatemRegister(this.mregisterForm.value)
+            .subscribe((res) => {
+              this.closebutton.nativeElement.click();
+              this.getListitem();
+              this.mregisterForm.reset();
+              Swal.fire({
+                title: 'Updated',
+                text: 'Records Updated Successfuly',
+                icon: 'success',
+              });
+              return (this.formdata = res);
+            },(err)=>{
+              this.closebutton.nativeElement.click();
+              this.mregisterForm.reset();
+              Swal.fire({
+                title: 'Error',
+                text: err.message,
+                icon: 'error',
+              });
+            });
+        }else{
+          this.closebutton.nativeElement.click();
+          Swal.fire({
+            title: 'Error',
+            text: 'Records Not Updated',
+            icon: 'error',
+          });
+        }
+      })
+    }
+    // this.formdata = JSON.stringify(this.mregisterForm.value);
     console.log(this.formdata);
 
-    this.authservice
-      .updatemRegister(this.mregisterForm.value)
-      .subscribe((res) => {
-        this.closebutton.nativeElement.click();
-        this.getListitem();
-        this.mregisterForm.reset();
-        return (this.formdata = res);
-      });
+
   }
   onAddSubmit() {
-    this.authservice
-      .createmRegister(this.mregisterForm.value)
-      .subscribe((res) => {
-        this.closebutton.nativeElement.click();
-        this.getListitem();
-        this.mregisterForm.reset();
-        return (this.formdata = res);
+    if (this.mregisterForm.valid) {
+      Swal.fire({
+        title: 'Are you sure?',
+        text: 'You want to Save this Records!',
+        icon: 'info',
+        showCancelButton: true,
+        confirmButtonColor: '#1ba564',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, Save it!',
+      }).then((result) => {
+        if (result.isConfirmed) {
+          this.authservice.createmRegister(this.mregisterForm.value).subscribe(
+            (res) => {
+              this.closebutton.nativeElement.click();
+              this.getListitem();
+              this.mregisterForm.reset();
+              Swal.fire({
+                title: 'Saved',
+                text: 'Records Saved Successfuly',
+                icon: 'success',
+              });
+              return (this.formdata = res);
+            },
+            (err) => {
+              this.closebutton.nativeElement.click();
+              this.mregisterForm.reset();
+              Swal.fire({
+                title: 'Error',
+                text: err.message,
+                icon: 'error',
+              });
+            }
+          );
+        } else {
+          this.closebutton.nativeElement.click();
+          Swal.fire({
+            title: 'Error',
+            text: 'Records Not Saved',
+            icon: 'error',
+          });
+        }
       });
+    } else {
+      Swal.fire({
+        title: 'Error Posting',
+        text: 'Your Form Data Not Valid to Save Records',
+        icon: 'error',
+      });
+    }
   }
-  onDeleteAction(lists:any) {
-    let x = lists.uid;
-    console.log(x);
-    // this.authservice.deleteRegister(lists).subscribe((res) => {
-    //   this.getListitem();
-    //   return res;
-    // });
+  onDeleteAction(lists: any) {
+    Swal.fire({
+      title: "Are You Sure?",
+      text: "You want to this Records!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonText: "Yes Delete it!",
+      confirmButtonColor: "#7066e0",
+      cancelButtonColor: "#d33"
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.mregisterForm.controls['uid'].setValue(lists.uid);
+        this.authservice
+          .deleteRegister(this.mregisterForm.value)
+          .subscribe((res) => {
+            this.getListitem();
+            Swal.fire({
+              title: 'Delete',
+              text: 'Records Deleted Successfully',
+              icon: 'success'
+            })
+            return res;
+          });
+      }
+    })
+
   }
   filterTerm!: string;
   param: any;

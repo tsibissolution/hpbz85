@@ -1,0 +1,33 @@
+.example-form {
+    min-width: 300px;
+    max-width: 600px;
+    width: 100%;
+  }
+  
+  .example-full-width {
+    width: 100%;
+  }
+  .example-card{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 93vh;
+    padding: 3vh;
+  }
+  mat-card{
+    max-width: 600px;
+    float: right;
+    /* // margin: 2em auto; */
+    padding: 20px;
+  }
+  .mat-card{
+    max-width: 600px;
+    float: right;
+    /* // margin: 2em auto; */
+    padding: 20px;
+  }
+.headerText{
+  font-weight: 500;
+    color: blue;
+    /* // margin-bottom: -30px; */
+}
