@@ -15,6 +15,9 @@ import { TransportaccountComponent } from './transportaccount/transportaccount.c
 import { CompanyaccountComponent } from './companyaccount/companyaccount.component';
 import { DestinationComponent } from './destination/destination.component';
 import { SampleprodComponent } from './sampleprod/sampleprod.component';
+import { MdbCheckboxModule } from 'mdb-angular-ui-kit/checkbox';
+import { MdbFormsModule } from 'mdb-angular-ui-kit/forms';
+import { MdbRippleModule } from 'mdb-angular-ui-kit/ripple';
 
 @NgModule({
   declarations: [
@@ -34,6 +37,9 @@ import { SampleprodComponent } from './sampleprod/sampleprod.component';
     ReactiveFormsModule,
     NgxPaginationModule,
     FormsModule,
+    MdbRippleModule,
+    MdbFormsModule,
+    MdbCheckboxModule, 
   ],
 })
 export class MasterModule {}
