@@ -21,7 +21,7 @@ export class RegisterComponent {
   emal: any;
   showAdd!: boolean;
   showEdit!: boolean;
-  constructor(private http: HttpClient, private authservice: AuthService) { }
+  constructor(private http: HttpClient, private authservice: AuthService) {}
   ngOnInit() {
     this.getListitem();
     this.mregisterForm = new FormGroup({
@@ -82,9 +82,8 @@ export class RegisterComponent {
         confirmButtonText: 'Yes, Update it!',
       }).then((result) => {
         if (result.isConfirmed) {
-          this.authservice
-            .updatemRegister(this.mregisterForm.value)
-            .subscribe((res) => {
+          this.authservice.updatemRegister(this.mregisterForm.value).subscribe(
+            (res) => {
               this.closebutton.nativeElement.click();
               this.getListitem();
               this.mregisterForm.reset();
@@ -94,7 +93,8 @@ export class RegisterComponent {
                 icon: 'success',
               });
               return (this.formdata = res);
-            },(err)=>{
+            },
+            (err) => {
               this.closebutton.nativeElement.click();
               this.mregisterForm.reset();
               Swal.fire({
@@ -102,8 +102,9 @@ export class RegisterComponent {
                 text: err.message,
                 icon: 'error',
               });
-            });
-        }else{
+            }
+          );
+        } else {
           this.closebutton.nativeElement.click();
           Swal.fire({
             title: 'Error',
@@ -111,12 +112,10 @@ export class RegisterComponent {
             icon: 'error',
           });
         }
-      })
+      });
     }
     // this.formdata = JSON.stringify(this.mregisterForm.value);
     console.log(this.formdata);
-
-
   }
   onAddSubmit() {
     if (this.mregisterForm.valid) {
@@ -171,13 +170,13 @@ export class RegisterComponent {
   }
   onDeleteAction(lists: any) {
     Swal.fire({
-      title: "Are You Sure?",
-      text: "You want to this Records!",
-      icon: "warning",
+      title: 'Are You Sure?',
+      text: 'You want to this Records!',
+      icon: 'warning',
       showCancelButton: true,
-      confirmButtonText: "Yes Delete it!",
-      confirmButtonColor: "#7066e0",
-      cancelButtonColor: "#d33"
+      confirmButtonText: 'Yes Delete it!',
+      confirmButtonColor: '#7066e0',
+      cancelButtonColor: '#d33',
     }).then((result) => {
       if (result.isConfirmed) {
         this.mregisterForm.controls['uid'].setValue(lists.uid);
@@ -188,13 +187,12 @@ export class RegisterComponent {
             Swal.fire({
               title: 'Delete',
               text: 'Records Deleted Successfully',
-              icon: 'success'
-            })
+              icon: 'success',
+            });
             return res;
           });
       }
-    })
-
+    });
   }
   filterTerm!: string;
   param: any;

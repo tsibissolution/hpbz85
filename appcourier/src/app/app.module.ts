@@ -11,7 +11,7 @@ import { RegisterComponent } from './views/login/register/register.component';
 import { MdbCheckboxModule } from 'mdb-angular-ui-kit/checkbox';
 import { MdbFormsModule } from 'mdb-angular-ui-kit/forms';
 import { MdbRippleModule } from 'mdb-angular-ui-kit/ripple';
-
+import { MdbValidationModule  } from 'mdb-angular-ui-kit/validation';
 
 @NgModule({
   declarations: [AppComponent, LoginComponent, RegisterComponent],
@@ -21,13 +21,14 @@ import { MdbRippleModule } from 'mdb-angular-ui-kit/ripple';
     DisplayModule,
     RouterModule,
     FormsModule,
+    MdbValidationModule,
     ReactiveFormsModule,
     HttpClientModule,
     MdbRippleModule,
     MdbFormsModule,
-    MdbCheckboxModule, 
+    MdbCheckboxModule,
   ],
   providers: [],
-  bootstrap: [AppComponent,],
+  bootstrap: [AppComponent],
 })
 export class AppModule {}

@@ -18,6 +18,7 @@ import { SampleprodComponent } from './sampleprod/sampleprod.component';
 import { MdbCheckboxModule } from 'mdb-angular-ui-kit/checkbox';
 import { MdbFormsModule } from 'mdb-angular-ui-kit/forms';
 import { MdbRippleModule } from 'mdb-angular-ui-kit/ripple';
+import { MdbValidationModule } from 'mdb-angular-ui-kit/validation';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { MdbRippleModule } from 'mdb-angular-ui-kit/ripple';
     CommonModule,
     MasterRoutingModule,
     AgGridModule,
+    MdbValidationModule,
     ReactiveFormsModule,
     NgxPaginationModule,
     FormsModule,
