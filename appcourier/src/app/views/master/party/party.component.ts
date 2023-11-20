@@ -15,9 +15,15 @@ import {
 })
 export class PartyComponent {
   partyForm!: FormGroup;
-
+  p: number = 1;
+  list: any = [];
+  firstna: any;
+  lastna: any;
+  mobile: any;
+  emal: any;
   constructor(private http: HttpClient, private authService: AuthService) {}
   ngOnInit() {
+    this.getListitem();
     this.partyForm = new FormGroup({
       pid: new FormControl('', [Validators.required]),
       Ac_AcNo: new FormControl(''),
@@ -51,6 +57,17 @@ export class PartyComponent {
       destination: new FormControl(''),
       locking: new FormControl(''),
     });
+  }
+
+  getListitem() {
+    this.authService.GetAllParty().subscribe((res) => {
+      console.log(res);
+      return (this.list = res);
+    });
+  }
+
+  Search(value: any) {
+
   }
   
 }

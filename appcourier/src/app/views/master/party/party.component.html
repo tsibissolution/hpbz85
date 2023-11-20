@@ -3,7 +3,105 @@
     <i class="fa fa-indent text-success"></i>Add
   </button>
 </nav>
+<table class="table table-bordered">
+  <thead class="table-dark">
+    <tr>
+      <th style="width:50px;">Id</th>
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th>Mobile No</th>
+      <th>Email</th>
+      <th>Destination</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tr>
+    <td>
+      <input
+        type="text"
+        class="form-control"
+        placeholder="Enter First Name"
+        style="height: 26px;font-size: 14px;"
+      />
+    </td>
+    <td>
+      <input
+        type="text"
+        class="form-control"
+        name="firstna"
+        [(ngModel)]="firstna"
+        (ngModelChange)="Search($event)"
+        placeholder="Enter First Name"
+        style="height: 26px;font-size: 14px;"
+      />
+    </td>
+    <td>
+      <input
+        type="text"
+        class="form-control"
+        name="lastna"
+        [(ngModel)]="lastna"
+        (ngModelChange)="Search($event)"
+        placeholder="Enter Last Name"
+        style="height: 26px;font-size: 14px;"
+      />
+    </td>
+    <td>
+      <input
+        type="text"
+        class="form-control"
+        name="mobile"
+        [(ngModel)]="mobile"
+        (ngModelChange)="Search($event)"
+        placeholder="Enter Mobile No"
+        style="height: 26px;font-size: 14px;"
+      />
+    </td>
+    <td>
+      <input
+        type="text"
+        class="form-control"
+        name="emal"
+        [(ngModel)]="emal"
+        (ngModelChange)="Search($event)"
+        placeholder="Enter Email"
+        style="height: 26px;font-size: 14px;"
+      />
+    </td>
+    <td></td>
+  </tr>
+  <tr
+    *ngFor="
+      let lists of list.data | paginate: { itemsPerPage: 10, currentPage: p }
+    "
+  >
+    <td class="text-center">{{ lists.pid }}</td>
+    <td>{{ lists.Ac_Name }}</td>
+    <td>{{ lists.Ac_C_Address }}<br>{{ lists.Ac_Address1 }}<br>{{ lists.Ac_Address2 }}</td>
+    <td>{{ lists.Ac_Mobile }}</td>
+    <td>{{ lists.Ac_Email }}</td>
+    <td>{{lists.destination}}    </td>
 
+    <td class="text-center">
+      <button
+        class="btn"
+        data-bs-toggle="modal"
+        data-bs-target="#exampleModal"
+        
+      >
+        <i class="fa fa-edit text-info"></i>
+      </button>
+      <button class="btn" >
+        <i class="fa fa-trash-o text-danger"></i>
+      </button>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="7">
+      <pagination-controls (pageChange)="p = $event"></pagination-controls>
+    </td>
+  </tr>
+</table>
 
 
 <!-- modal party -->
@@ -17,7 +115,7 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Registration Form</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Party Account</h5>
         <button
           type="button"
           class="btn-close"
@@ -37,7 +135,7 @@
               class="form-control"
               id="exampleInputEmail1"
               aria-describedby="emailHelp"
-              formControlName="firstname"
+              
             />
           </div>
           <div class="mb-3">
@@ -48,7 +146,7 @@
               type="text"
               class="form-control"
               id="exampleInputPassword1"
-              formControlName="lastname"
+              
             />
           </div>
           <div class="mb-3">
@@ -59,7 +157,7 @@
               type="text"
               class="form-control"
               id="exampleInputPassword1"
-              formControlName="username"
+              
             />
           </div>
           <div class="mb-3">
@@ -70,7 +168,7 @@
               type="text"
               class="form-control"
               id="exampleInputPassword1"
-              formControlName="password"
+             
             />
           </div>
           <div class="mb-3">
@@ -79,7 +177,7 @@
               type="text"
               class="form-control"
               id="exampleInputPassword1"
-              formControlName="email"
+              
             />
           </div>
           <div class="mb-3">
@@ -90,12 +188,12 @@
               type="text"
               class="form-control"
               id="exampleInputPassword1"
-              formControlName="mobileno"
+              
             />
           </div>
           <div class="mb-3">
             <label for="exampleInputPassword1" class="form-label">Status</label>
-            <select formControlName="status" class="form-control">
+            <select  class="form-control">
               <option value="1">Approved</option>
               <option value="0">Not Approved</option>
             </select>
