@@ -13,6 +13,7 @@ import { MdbFormsModule } from 'mdb-angular-ui-kit/forms';
 import { MdbRippleModule } from 'mdb-angular-ui-kit/ripple';
 import { MdbValidationModule  } from 'mdb-angular-ui-kit/validation';
 
+
 @NgModule({
   declarations: [AppComponent, LoginComponent, RegisterComponent],
   imports: [

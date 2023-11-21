@@ -1,0 +1,24 @@
+<div class="container-fluid">
+  <div class="row card-body">
+    <div class="col-sm-2">
+      <nav class="nav flex-column sidenav sidenav-primary">
+        <a class="nav-link" routerLink="dispatch" routerLinkActive="active-link"
+          >Dispatched Invoice</a
+        >
+        <a
+          class="nav-link"
+          routerLink="lrupdation"
+          routerLinkActive="active-link"
+          >LR Updation</a
+        >
+        <a class="nav-link" routerLink="sample" routerLinkActive="active-link"
+          >Sample Invoice</a
+        >
+      </nav>
+    </div>
+
+    <div class="col-sm-10 rounded active">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>

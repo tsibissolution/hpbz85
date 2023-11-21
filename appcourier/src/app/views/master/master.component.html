@@ -1,6 +1,6 @@
 <div class="container-fluid">
   <div class="row card-body">
-    <div class="col-sm-2 ">
+    <div class="col-sm-2">
       <!-- <nav class="nav flex-column ">
         <li class="nav-item">
           <a class="nav-link active"  aria-current="page" routerLink="partylist">Party Account</a>
@@ -25,16 +25,47 @@
         </li>
       </nav> -->
       <nav class="nav flex-column sidenav sidenav-primary">
-        <a class="nav-link active"  aria-current="page" routerLink="partylist">Party Account</a>
-        <a class="nav-link" routerLink="mraccount" routerLinkActive="active-link" >Field Staff Account</a>
-        <a class="nav-link" routerLink="transport" routerLinkActive="active-link">Transport Details</a>
-        <a class="nav-link" routerLink="register" routerLinkActive="active-link">Sign Up Account</a>
+        <a class="nav-link" routerLink="company" routerLinkActive="active-link"
+          >Company Account</a
+        >
+        <a
+          class="nav-link"
+          routerLink="destination"
+          routerLinkActive="active-link"
+          >Destination Slab</a
+        >
+        <a
+          class="nav-link"
+          routerLink="mraccount"
+          routerLinkActive="active-link"
+          >Field Staff Account</a
+        >
+        <a
+          class="nav-link"
+          routerLink="partylist"
+          routerLinkActive="active-link"
+          >Party Account</a
+        >
+        <a
+          class="nav-link"
+          routerLink="sampleprod"
+          routerLinkActive="active-link"
+          >Sample Product Entry</a
+        >
+        <a class="nav-link" routerLink="register" routerLinkActive="active-link"
+          >Sign Up Account</a
+        >
+        <a
+          class="nav-link"
+          routerLink="transport"
+          routerLinkActive="active-link"
+          >Transport Details</a
+        >
       </nav>
     </div>
-    
+
     <div class="col-sm-10 rounded active">
       <router-outlet></router-outlet>
     </div>
-  
   </div>
 </div>
