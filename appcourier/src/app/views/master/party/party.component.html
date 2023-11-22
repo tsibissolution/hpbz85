@@ -77,21 +77,16 @@
   >
     <td class="text-center">{{ lists.pid }}</td>
     <td>{{ lists.Ac_Name }}</td>
-    <td>{{ lists.Ac_Address1 }}<br>{{ lists.Ac_Address2 }}</td>
+    <td>{{ lists.Ac_Address1 }}<br />{{ lists.Ac_Address2 }}</td>
     <td>{{ lists.Ac_Mobile }}</td>
     <td>{{ lists.Ac_Email }}</td>
-    <td>{{lists.destination}}    </td>
+    <td>{{ lists.destination }}</td>
 
     <td class="text-center">
-      <button
-        class="btn"
-        data-bs-toggle="modal"
-        data-bs-target="#exampleModal"
-        
-      >
+      <button class="btn" data-bs-toggle="modal" data-bs-target="#partymodal">
         <i class="fa fa-edit text-info"></i>
       </button>
-      <button class="btn" >
+      <button class="btn">
         <i class="fa fa-trash-o text-danger"></i>
       </button>
     </td>
@@ -103,19 +98,18 @@
   </tr>
 </table>
 
-
 <!-- modal party -->
 <div
-  class="modal fade"
+  class="modal fade bd-example-modal-lg"
   id="partymodal"
   tabindex="-1"
-  aria-labelledby="exampleModalLabel"
+  aria-labelledby="partymodal"
   aria-hidden="true"
 >
-  <div class="modal-dialog">
+  <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Party Account</h5>
+        <h5 class="modal-title" id="partymodal">Party Account</h5>
         <button
           type="button"
           class="btn-close"
@@ -126,7 +120,7 @@
       </div>
       <div class="modal-body">
         <form [formGroup]="partyForm">
-          <div class="mb-3">
+          <!-- <div class="mb-3">
             <label for="exampleInputEmail1" class="form-label"
               >First Name</label
             >
@@ -197,6 +191,224 @@
               <option value="1">Approved</option>
               <option value="0">Not Approved</option>
             </select>
+          </div> -->
+          <div class="row">
+            <div class="col">
+              <mdb-form-control class="mb-3">
+                <input
+                  mdbValidate
+                  mdbInput
+                  type="text"
+                  formControlName="Ac_Name"
+                  class="form-control form-control-lg"
+                />
+                <label mdbLabel class="form-label" for="typeText"
+                  >Party Name</label
+                >
+                <!-- <mdb-error
+                  class="text-danger"
+                  *ngIf="
+                    mregisterForm.controls['firstname'].invalid &&
+                    (mregisterForm.controls['firstname'].dirty ||
+                      mregisterForm.controls['firstname'].touched)
+                  "
+                  >First name is required</mdb-error
+                > -->
+              </mdb-form-control>
+            </div>
+            <div class="col">
+              <mdb-form-control class="mb-3">
+                <input
+                  mdbValidate
+                  mdbInput
+                  type="text"
+                  formControlName="Ac_Address1"
+                  class="form-control form-control-lg"
+                />
+                <label mdbLabel class="form-label" for="typeText"
+                  >Address
+                </label>
+                <!-- <mdb-error
+                  class="text-danger"
+                  *ngIf="
+                    mregisterForm.controls['firstname'].invalid &&
+                    (mregisterForm.controls['firstname'].dirty ||
+                      mregisterForm.controls['firstname'].touched)
+                  "
+                  >First name is required</mdb-error
+                > -->
+              </mdb-form-control>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <mdb-form-control class="mb-3">
+                <input
+                  mdbValidate
+                  mdbInput
+                  type="text"
+                  formControlName="Ac_Address2"
+                  class="form-control form-control-lg"
+                />
+                <label mdbLabel class="form-label" for="typeText"
+                  >Address
+                </label>
+                <!-- <mdb-error
+                  class="text-danger"
+                  *ngIf="
+                    mregisterForm.controls['firstname'].invalid &&
+                    (mregisterForm.controls['firstname'].dirty ||
+                      mregisterForm.controls['firstname'].touched)
+                  "
+                  >First name is required</mdb-error
+                > -->
+              </mdb-form-control>
+            </div>
+            <div class="col">
+              <mdb-form-control class="mb-3">
+                <input
+                  mdbValidate
+                  mdbInput
+                  type="text"
+                  formControlName="Ac_Address3"
+                  class="form-control form-control-lg"
+                />
+                <label mdbLabel class="form-label" for="typeText"
+                  >Address
+                </label>
+                <!-- <mdb-error
+                  class="text-danger"
+                  *ngIf="
+                    mregisterForm.controls['firstname'].invalid &&
+                    (mregisterForm.controls['firstname'].dirty ||
+                      mregisterForm.controls['firstname'].touched)
+                  "
+                  >First name is required</mdb-error
+                > -->
+              </mdb-form-control>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <mdb-form-control class="mb-3">
+                <input
+                  mdbValidate
+                  mdbInput
+                  type="text"
+                  formControlName="Ac_Address2"
+                  class="form-control form-control-lg"
+                />
+                <label mdbLabel class="form-label" for="typeText"
+                  >GST No.
+                </label>
+                <!-- <mdb-error
+                  class="text-danger"
+                  *ngIf="
+                    mregisterForm.controls['firstname'].invalid &&
+                    (mregisterForm.controls['firstname'].dirty ||
+                      mregisterForm.controls['firstname'].touched)
+                  "
+                  >First name is required</mdb-error
+                > -->
+              </mdb-form-control>
+            </div>
+            <div class="col">
+              <mdb-form-control class="mb-3">
+                <input
+                  mdbValidate
+                  mdbInput
+                  type="text"
+                  formControlName="Ac_Address3"
+                  class="form-control form-control-lg"
+                />
+                <label mdbLabel class="form-label" for="typeText"
+                  >Destination
+                </label>
+                <!-- <mdb-error
+                  class="text-danger"
+                  *ngIf="
+                    mregisterForm.controls['firstname'].invalid &&
+                    (mregisterForm.controls['firstname'].dirty ||
+                      mregisterForm.controls['firstname'].touched)
+                  "
+                  >First name is required</mdb-error
+                > -->
+              </mdb-form-control>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <mdb-form-control class="mb-4">
+                <input
+                  mdbValidate
+                  mdbInput
+                  type="text"
+                  formControlName="Ac_Address2"
+                  class="form-control form-control-lg"
+                />
+                <label mdbLabel class="form-label" for="typeText"
+                  >Pin Code
+                </label>
+                <!-- <mdb-error
+                  class="text-danger"
+                  *ngIf="
+                    mregisterForm.controls['firstname'].invalid &&
+                    (mregisterForm.controls['firstname'].dirty ||
+                      mregisterForm.controls['firstname'].touched)
+                  "
+                  >First name is required</mdb-error
+                > -->
+              </mdb-form-control>
+            </div>
+            <div class="col">
+              <mdb-form-control class="mb-3">
+                <input
+                  mdbValidate
+                  mdbInput
+                  type="text"
+                  formControlName="Ac_Address3"
+                  class="form-control form-control-lg"
+                />
+                <label mdbLabel class="form-label" for="typeText"
+                  >Mobile No.
+                </label>
+                <!-- <mdb-error
+                  class="text-danger"
+                  *ngIf="
+                    mregisterForm.controls['firstname'].invalid &&
+                    (mregisterForm.controls['firstname'].dirty ||
+                      mregisterForm.controls['firstname'].touched)
+                  "
+                  >First name is required</mdb-error
+                > -->
+              </mdb-form-control>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <mdb-form-control class="mb-3">
+                <select class="form-control" mdbInput style="height:40px;">
+                  <option>----Select----</option>
+                  <option value="0">No</option>
+                  <option value="1">Yes</option>
+                </select>
+                <label mdbLabel class="form-label" for="typeText"
+                  >Lock Party</label
+                >
+                <!-- <mdb-error
+                  class="text-danger"
+                  *ngIf="
+                    mregisterForm.controls['firstname'].invalid &&
+                    (mregisterForm.controls['firstname'].dirty ||
+                      mregisterForm.controls['firstname'].touched)
+                  "
+                  >First name is required</mdb-error
+                > -->
+              </mdb-form-control>
+            </div>
+            <div class="col">
+              
+            </div>
           </div>
         </form>
       </div>
@@ -204,9 +416,7 @@
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
           Close
         </button>
-        <button type="submit" class="btn btn-primary" >
-          Submit
-        </button>
+        <button type="submit" class="btn btn-primary">Submit</button>
       </div>
     </div>
   </div>
