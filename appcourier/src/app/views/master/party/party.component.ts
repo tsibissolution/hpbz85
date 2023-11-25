@@ -21,9 +21,11 @@ export class PartyComponent {
   lastna: any;
   mobile: any;
   emal: any;
+  destination: any = [];
   constructor(private http: HttpClient, private authService: AuthService) {}
   ngOnInit() {
     this.getListitem();
+    this.getDestination();
     this.partyForm = new FormGroup({
       pid: new FormControl('', [Validators.required]),
       Ac_AcNo: new FormControl(''),
@@ -49,8 +51,12 @@ export class PartyComponent {
     });
   }
 
-  Search(value: any) {
+  Search(value: any) {}
 
+  getDestination() {
+    this.authService.GetDestination().subscribe((res) => {
+      console.log(res);
+      return (this.destination = res);
+    });
   }
-  
 }

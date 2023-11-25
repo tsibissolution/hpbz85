@@ -314,13 +314,17 @@
             </div>
             <div class="col">
               <mdb-form-control class="mb-3">
-                <input
+                <!-- <input
                   mdbValidate
                   mdbInput
                   type="text"
                   formControlName="Ac_Address3"
                   class="form-control form-control-lg"
-                />
+                /> -->
+                <select class="form-control" mdbInput style="height:40px;">
+                  <option>----Select Destination----</option>
+                  <option *ngFor="let destinations of destination.data" [value]="destinations.id">{{destinations.destination}}</option>
+                </select>
                 <label mdbLabel class="form-label" for="typeText"
                   >Destination
                 </label>
