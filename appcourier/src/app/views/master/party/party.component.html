@@ -1,5 +1,5 @@
 <nav class="navbar">
-  <button class="btn" data-bs-toggle="modal" data-bs-target="#partymodal">
+  <button class="btn" data-bs-toggle="modal" data-bs-target="#partymodal" (click)="onAddClicked()">
     <i class="fa fa-indent text-success"></i>Add
   </button>
 </nav>
@@ -83,7 +83,7 @@
     <td>{{ lists.destination }}</td>
 
     <td class="text-center">
-      <button class="btn" data-bs-toggle="modal" data-bs-target="#partymodal">
+      <button class="btn" data-bs-toggle="modal" data-bs-target="#partymodal" (click)="onEdit(lists)">
         <i class="fa fa-edit text-info"></i>
       </button>
       <button class="btn">
@@ -119,79 +119,7 @@
         ></button>
       </div>
       <div class="modal-body">
-        <form [formGroup]="partyForm">
-          <!-- <div class="mb-3">
-            <label for="exampleInputEmail1" class="form-label"
-              >First Name</label
-            >
-            <input
-              type="text"
-              class="form-control"
-              id="exampleInputEmail1"
-              aria-describedby="emailHelp"
-              
-            />
-          </div>
-          <div class="mb-3">
-            <label for="exampleInputPassword1" class="form-label"
-              >Last Name</label
-            >
-            <input
-              type="text"
-              class="form-control"
-              id="exampleInputPassword1"
-              
-            />
-          </div>
-          <div class="mb-3">
-            <label for="exampleInputPassword1" class="form-label"
-              >User Name</label
-            >
-            <input
-              type="text"
-              class="form-control"
-              id="exampleInputPassword1"
-              
-            />
-          </div>
-          <div class="mb-3">
-            <label for="exampleInputPassword1" class="form-label"
-              >Password
-            </label>
-            <input
-              type="text"
-              class="form-control"
-              id="exampleInputPassword1"
-             
-            />
-          </div>
-          <div class="mb-3">
-            <label for="exampleInputPassword1" class="form-label">Email</label>
-            <input
-              type="text"
-              class="form-control"
-              id="exampleInputPassword1"
-              
-            />
-          </div>
-          <div class="mb-3">
-            <label for="exampleInputPassword1" class="form-label"
-              >Mobile No</label
-            >
-            <input
-              type="text"
-              class="form-control"
-              id="exampleInputPassword1"
-              
-            />
-          </div>
-          <div class="mb-3">
-            <label for="exampleInputPassword1" class="form-label">Status</label>
-            <select  class="form-control">
-              <option value="1">Approved</option>
-              <option value="0">Not Approved</option>
-            </select>
-          </div> -->
+        <form [formGroup]="partyForm">          
           <div class="row">
             <div class="col">
               <mdb-form-control class="mb-3">
@@ -199,7 +127,7 @@
                   mdbValidate
                   mdbInput
                   type="text"
-                  formControlName="Ac_Name"
+                  formControlName="acname"
                   class="form-control form-control-lg"
                 />
                 <label mdbLabel class="form-label" for="typeText"
@@ -222,7 +150,7 @@
                   mdbValidate
                   mdbInput
                   type="text"
-                  formControlName="Ac_Address1"
+                  formControlName="acaddress1"
                   class="form-control form-control-lg"
                 />
                 <label mdbLabel class="form-label" for="typeText"
@@ -247,7 +175,7 @@
                   mdbValidate
                   mdbInput
                   type="text"
-                  formControlName="Ac_Address2"
+                  formControlName="acaddress2"
                   class="form-control form-control-lg"
                 />
                 <label mdbLabel class="form-label" for="typeText"
@@ -270,7 +198,7 @@
                   mdbValidate
                   mdbInput
                   type="text"
-                  formControlName="Ac_Address3"
+                  formControlName="acaddress3"
                   class="form-control form-control-lg"
                 />
                 <label mdbLabel class="form-label" for="typeText"
@@ -295,7 +223,7 @@
                   mdbValidate
                   mdbInput
                   type="text"
-                  formControlName="Ac_Address2"
+                  formControlName="acgstno"
                   class="form-control form-control-lg"
                 />
                 <label mdbLabel class="form-label" for="typeText"
@@ -321,7 +249,7 @@
                   formControlName="Ac_Address3"
                   class="form-control form-control-lg"
                 /> -->
-                <select class="form-control" mdbInput style="height:40px;">
+                <select class="form-control"  formControlName="destination" mdbInput style="height:38px;">
                   <option>----Select Destination----</option>
                   <option *ngFor="let destinations of destination.data" [value]="destinations.id">{{destinations.destination}}</option>
                 </select>
@@ -347,11 +275,11 @@
                   mdbValidate
                   mdbInput
                   type="text"
-                  formControlName="Ac_Address2"
+                  formControlName="acemail"
                   class="form-control form-control-lg"
                 />
                 <label mdbLabel class="form-label" for="typeText"
-                  >Pin Code
+                  >Email Address
                 </label>
                 <!-- <mdb-error
                   class="text-danger"
@@ -370,7 +298,7 @@
                   mdbValidate
                   mdbInput
                   type="text"
-                  formControlName="Ac_Address3"
+                  formControlName="acmobile"
                   class="form-control form-control-lg"
                 />
                 <label mdbLabel class="form-label" for="typeText"
@@ -390,8 +318,31 @@
           </div>
           <div class="row">
             <div class="col">
+              <mdb-form-control class="mb-4">
+                <input
+                  mdbValidate
+                  mdbInput
+                  type="text"
+                  formControlName="acpincode"
+                  class="form-control form-control-lg"
+                />
+                <label mdbLabel class="form-label" for="typeText"
+                  >Pin Code
+                </label>
+                <!-- <mdb-error
+                  class="text-danger"
+                  *ngIf="
+                    mregisterForm.controls['firstname'].invalid &&
+                    (mregisterForm.controls['firstname'].dirty ||
+                      mregisterForm.controls['firstname'].touched)
+                  "
+                  >First name is required</mdb-error
+                > -->
+              </mdb-form-control>
+            </div>
+            <div class="col">
               <mdb-form-control class="mb-3">
-                <select class="form-control" mdbInput style="height:40px;">
+                <select class="form-control" formControlName="locking" mdbInput style="height:38px;">
                   <option>----Select----</option>
                   <option value="0">No</option>
                   <option value="1">Yes</option>
@@ -410,9 +361,7 @@
                 > -->
               </mdb-form-control>
             </div>
-            <div class="col">
-              
-            </div>
+            
           </div>
         </form>
       </div>
@@ -420,7 +369,8 @@
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
           Close
         </button>
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" class="btn btn-primary" *ngIf="showAdd" (click)="onAddSubmit()">Add</button>
+        <button type="submit" class="btn btn-success" *ngIf="showEdit" (click)="onAddSubmit()">Update</button>
       </div>
     </div>
   </div>

@@ -7,6 +7,7 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-party',
@@ -14,7 +15,9 @@ import {
   styleUrls: ['./party.component.css'],
 })
 export class PartyComponent {
+  @ViewChild('closebutton') closebutton: any;
   partyForm!: FormGroup;
+  formdata: any;
   p: number = 1;
   list: any = [];
   firstna: any;
@@ -22,22 +25,24 @@ export class PartyComponent {
   mobile: any;
   emal: any;
   destination: any = [];
+  showAdd!: boolean;
+  showEdit!: boolean;
   constructor(private http: HttpClient, private authService: AuthService) {}
   ngOnInit() {
     this.getListitem();
     this.getDestination();
     this.partyForm = new FormGroup({
       pid: new FormControl('', [Validators.required]),
-      Ac_AcNo: new FormControl(''),
-      Ac_Group: new FormControl(''),
-      Ac_Name: new FormControl('', [Validators.required]),
-      Ac_Address1: new FormControl(''),
-      Ac_Address2: new FormControl(''),
-      Ac_Address3: new FormControl(''),
-      Ac_Pin_Code: new FormControl(''),
-      Ac_Mobile: new FormControl(''),
-      Ac_Email: new FormControl(''),
-      Ac_GST_Number: new FormControl(''),
+      // Ac_AcNo: new FormControl(''),
+      // Ac_Group: new FormControl(''),
+      acname: new FormControl('', [Validators.required]),
+      acaddress1: new FormControl(''),
+      acaddress2: new FormControl(''),
+      acaddress3: new FormControl(''),
+      acpincode: new FormControl(''),
+      acmobile: new FormControl(''),
+      acemail: new FormControl(''),
+      acgstno: new FormControl(''),
       acacid: new FormControl(''),
       destination: new FormControl(''),
       locking: new FormControl(''),
@@ -58,5 +63,68 @@ export class PartyComponent {
       console.log(res);
       return (this.destination = res);
     });
+  }
+  onAddClicked() {
+    this.partyForm.reset();
+    this.showAdd = true;
+    this.showEdit = false;
+  }
+  onAddSubmit() {
+    Swal.fire({title: 'Are you sure?',
+    text: 'You want to Save this Records!',
+    icon: 'info',
+    showCancelButton: true,
+    confirmButtonColor: '#1ba564',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Yes, Save it!',}).then((result)=>{
+      if (result.isConfirmed) {
+      this.authService.createParty(this.partyForm.value).subscribe(
+        (res) => {
+          this.closebutton.nativeElement.click();
+          this.getListitem();
+          this.partyForm.reset();
+          Swal.fire({
+            title: 'Saved',
+            text: 'Records Saved Successfuly',
+            icon: 'success',
+          });
+          return (this.formdata = res);
+        },
+        (err) => {
+          this.closebutton.nativeElement.click();
+          this.partyForm.reset();
+          Swal.fire({
+            title: 'Error',
+            text: err.message,
+            icon: 'error',
+          });
+        }
+      );
+    } else {
+      this.closebutton.nativeElement.click();
+      Swal.fire({
+        title: 'Error',
+        text: 'Records Not Saved',
+        icon: 'error',
+      });
+    }
+  });
+   
+    console.log(this.partyForm.value);
+  }
+
+  onEdit(lists: any) {
+    this.partyForm.controls['Ac_Name'].setValue(lists.Ac_Name);
+    this.partyForm.controls['Ac_Address1'].setValue(lists.Ac_Address1);
+    this.partyForm.controls['Ac_Address2'].setValue(lists.Ac_Address2);
+    this.partyForm.controls['Ac_Address3'].setValue(lists.Ac_Address3);
+    this.partyForm.controls['Ac_Pin_Code'].setValue(lists.Ac_Pin_Code);
+    this.partyForm.controls['Ac_Mobile'].setValue(lists.Ac_Mobile);
+    this.partyForm.controls['Ac_Email'].setValue(lists.Ac_Email);
+    this.partyForm.controls['Ac_GST_Number'].setValue(lists.Ac_GST_Number);
+    this.partyForm.controls['destination'].setValue(lists.destination);
+    this.partyForm.controls['locking'].setValue(lists.locking);
+    this.showEdit = true;
+    this.showAdd = false;
   }
 }
