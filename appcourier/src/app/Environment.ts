@@ -1,3 +1,3 @@
 export enum Environments {
-  apiUrl = 'https://mongodb-two.vercel.app/api/v2/',
+  apiUrl = 'https://sql-db-api.vercel.app/api/v2/',
 }
