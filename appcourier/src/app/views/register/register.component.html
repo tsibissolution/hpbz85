@@ -187,62 +187,76 @@
               mdbInput
               type="text"
               class="form-control form-control-lg"
-              id="exampleInputPassword1"
               formControlName="username"
             />
             <label mdbLabel for="typeText" class="form-label">User Name</label>
           </mdb-form-control>
-          <div class="mb-3">
-            <label for="exampleInputPassword1" class="form-label"
-              >Password
-            </label>
+          <mdb-form-control class="mb-3">
             <input
+              mdbInput
               type="password"
-              class="form-control"
-              id="exampleInputPassword1"
+              class="form-control form-control-lg"
               formControlName="password"
             />
-          </div>
-          <div class="mb-3">
-            <label for="exampleInputPassword1" class="form-label">Email</label>
+            <label mdbLabel for="typeText" class="form-label">Password </label>
+          </mdb-form-control>
+          <mdb-form-control class="mb-3">
             <input
+              mdbInput
               type="text"
-              class="form-control"
+              class="form-control form-control-lg"
               id="exampleInputPassword1"
               formControlName="email"
             />
-          </div>
-          <div class="mb-3">
-            <label for="exampleInputPassword1" class="form-label"
-              >Mobile No</label
+            <label mdbLabel for="exampleInputPassword1" class="form-label"
+              >Email</label
             >
+          </mdb-form-control>
+          <mdb-form-control class="mb-3">
             <input
+              mdbInput
               type="text"
-              class="form-control"
+              class="form-control form-control-lg"
               id="exampleInputPassword1"
               formControlName="mobileno"
             />
-            <input
+            <!-- <input
+            mdbInput
               type="text"
               class="form-control"
               id="exampleInputPassword1"
               formControlName="log_year"
-            />
-          </div>
-          <div class="mb-3">
-            <label for="exampleInputPassword1" class="form-label">Status</label>
-            <select formControlName="status" class="form-control">
+            /> -->
+            <label mdbLabel for="exampleInputPassword1" class="form-label"
+              >Mobile No</label
+            >
+          </mdb-form-control>
+          <mdb-form-control class="mb-3">
+            <select
+              mdbInput
+              formControlName="status"
+              class="form-control form-control-lg"
+            >
               <option value="1">Approved</option>
               <option value="0">Not Approved</option>
             </select>
-          </div>
-          <div class="mb-3">
-            <label for="exampleInputType" class="form-label">Privilage</label>
-            <select formControlName="utype" class="form-control">
+            <label mdbLabel for="exampleInputPassword1" class="form-label"
+              >Status</label
+            >
+          </mdb-form-control>
+          <mdb-form-control class="mb-3">
+            <select
+              mdbInput
+              formControlName="utype"
+              class="form-control form-control-lg"
+            >
               <option value="AD">Admin</option>
               <option value="EM">Employees</option>
             </select>
-          </div>
+            <label mdbLabel for="exampleInputType" class="form-label"
+              >Privilage</label
+            >
+          </mdb-form-control>
         </form>
       </div>
       <div class="modal-footer">

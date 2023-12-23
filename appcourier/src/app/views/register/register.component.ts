@@ -137,11 +137,12 @@ export class RegisterComponent {
         if (result.isConfirmed) {
           this.authservice.createmRegister(valueAdd).subscribe(
             (res) => {
+              this.formdata = res;
               this.closebutton.nativeElement.click();
               this.getListitem();
               this.mregisterForm.reset();
               Swal.fire({
-                title: 'Saved',
+                title: this.formdata.Status,
                 text: 'Records Saved Successfuly',
                 icon: 'success',
               });
