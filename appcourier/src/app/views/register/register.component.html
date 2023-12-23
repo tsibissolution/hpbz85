@@ -182,17 +182,16 @@
             <label for="exampleInputPassword1" class="form-label">Last Name</label>
             <input type="text" class="form-control" id="exampleInputPassword1" formControlName="lastname" />
           </div> -->
-          <div class="mb-3">
-            <label for="exampleInputPassword1" class="form-label"
-              >User Name</label
-            >
+          <mdb-form-control class="mb-3">
             <input
+              mdbInput
               type="text"
-              class="form-control"
+              class="form-control form-control-lg"
               id="exampleInputPassword1"
               formControlName="username"
             />
-          </div>
+            <label mdbLabel for="typeText" class="form-label">User Name</label>
+          </mdb-form-control>
           <div class="mb-3">
             <label for="exampleInputPassword1" class="form-label"
               >Password
@@ -229,6 +228,13 @@
             <select formControlName="status" class="form-control">
               <option value="1">Approved</option>
               <option value="0">Not Approved</option>
+            </select>
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputType" class="form-label">Privilage</label>
+            <select formControlName="utype" class="form-control">
+              <option value="AD">Admin</option>
+              <option value="EM">Employees</option>
             </select>
           </div>
         </form>

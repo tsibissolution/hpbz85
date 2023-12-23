@@ -118,6 +118,7 @@ export class RegisterComponent {
     console.log(this.formdata);
   }
   onAddSubmit() {
+    console.log(this.mregisterForm.value);
     if (this.mregisterForm.valid) {
       Swal.fire({
         title: 'Are you sure?',
