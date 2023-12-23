@@ -118,7 +118,12 @@ export class RegisterComponent {
     console.log(this.formdata);
   }
   onAddSubmit() {
-    console.log(this.mregisterForm.value);
+    const valueAdd = {
+      ...this.mregisterForm.value,
+      log_year: +this.mregisterForm.value.log_year,
+      status: +this.mregisterForm.value.status,
+    };
+    console.log(valueAdd);
     if (this.mregisterForm.valid) {
       Swal.fire({
         title: 'Are you sure?',
@@ -130,7 +135,7 @@ export class RegisterComponent {
         confirmButtonText: 'Yes, Save it!',
       }).then((result) => {
         if (result.isConfirmed) {
-          this.authservice.createmRegister(this.mregisterForm.value).subscribe(
+          this.authservice.createmRegister(valueAdd).subscribe(
             (res) => {
               this.closebutton.nativeElement.click();
               this.getListitem();
