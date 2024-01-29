@@ -15,13 +15,13 @@ export class AuthService {
     return this.httpSrvice.get(this.API_URL + 'getAllPartyRecords');
   }
 
-  createParty(inputdata:any){
-    return this.httpSrvice.post(this.API_URL+ 'createNewParty', inputdata);
+  createParty(inputdata: any) {
+    return this.httpSrvice.post(this.API_URL + 'createNewParty', inputdata);
   }
   GetDestination() {
     return this.httpSrvice.get(this.API_URL + 'getAllDestinations');
   }
- 
+
   // register
   GetAllMregister() {
     return this.httpSrvice.get(this.API_URL + 'getAllMregister');
@@ -48,7 +48,7 @@ export class AuthService {
   }
 
   processLogin(inputdata: any) {
-    return this.httpSrvice.post(this.API_URL + 'signin', inputdata);
+    return this.httpSrvice.post(this.API_URL + 'etUserLogin', inputdata);
   }
   IsLoggedIn() {
     return sessionStorage.getItem('token') != null;
