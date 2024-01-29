@@ -48,7 +48,7 @@ export class AuthService {
   }
 
   processLogin(inputdata: any) {
-    return this.httpSrvice.post(this.API_URL + 'etUserLogin', inputdata);
+    return this.httpSrvice.post(this.API_URL + 'getUserLogin', inputdata);
   }
   IsLoggedIn() {
     return sessionStorage.getItem('token') != null;
