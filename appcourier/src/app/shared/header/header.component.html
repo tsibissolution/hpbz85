@@ -8,7 +8,7 @@
         height="24"
         class="d-inline-block align-text-top"
       />
-     TSIBISSOLUTION
+      TSIBISSOLUTION
     </a>
     <div>
       <a class="btn btn-default" routerLink="master">Master</a>
@@ -19,15 +19,36 @@
     <nav class="me-5">
       <ul class="nav nav-tabs">
         <li class="nav-item dropdown">
-          <button
+          <!-- <button
             class="nav-link dropdown-toggle"
             data-bs-toggle="dropdown"
             href="#"
             role="button"
             aria-expanded="false"
           >
-            Hello {{username}}
-          </button>
+            Hello {{username}} 
+            <div >
+              <img src="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp" class="rounded-circle" style="width: 25px; height:24px;"
+            alt="Avatar" />
+            </div>
+            
+          </button> -->
+
+          <div style="line-height:55px">
+            <a
+              href=""
+              class="dropdown-toggle nav-link"
+              data-bs-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+            >
+              <img
+                class="rounded-circle"
+                src="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp"
+                alt="User Avatar" style="width:50px"
+              />
+            </a>
+          </div>
           <ul class="dropdown-menu">
             <li><a class="dropdown-item" routerLink="master">Party</a></li>
             <li><a class="dropdown-item" href="#">Another action</a></li>
