@@ -70,58 +70,60 @@ export class PartyComponent {
     this.showEdit = false;
   }
   onAddSubmit() {
-    Swal.fire({title: 'Are you sure?',
-    text: 'You want to Save this Records!',
-    icon: 'info',
-    showCancelButton: true,
-    confirmButtonColor: '#1ba564',
-    cancelButtonColor: '#d33',
-    confirmButtonText: 'Yes, Save it!',}).then((result)=>{
+    Swal.fire({
+      title: 'Are you sure?',
+      text: 'You want to Save this Records!',
+      icon: 'info',
+      showCancelButton: true,
+      confirmButtonColor: '#1ba564',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, Save it!',
+    }).then((result) => {
       if (result.isConfirmed) {
-      this.authService.createParty(this.partyForm.value).subscribe(
-        (res) => {
-          this.closebutton.nativeElement.click();
-          this.getListitem();
-          this.partyForm.reset();
-          Swal.fire({
-            title: 'Saved',
-            text: 'Records Saved Successfuly',
-            icon: 'success',
-          });
-          return (this.formdata = res);
-        },
-        (err) => {
-          this.closebutton.nativeElement.click();
-          this.partyForm.reset();
-          Swal.fire({
-            title: 'Error',
-            text: err.message,
-            icon: 'error',
-          });
-        }
-      );
-    } else {
-      this.closebutton.nativeElement.click();
-      Swal.fire({
-        title: 'Error',
-        text: 'Records Not Saved',
-        icon: 'error',
-      });
-    }
-  });
-   
+        this.authService.createParty(this.partyForm.value).subscribe(
+          (res) => {
+            this.closebutton.nativeElement.click();
+            this.getListitem();
+            this.partyForm.reset();
+            Swal.fire({
+              title: 'Saved',
+              text: 'Records Saved Successfuly',
+              icon: 'success',
+            });
+            return (this.formdata = res);
+          },
+          (err) => {
+            this.closebutton.nativeElement.click();
+            this.partyForm.reset();
+            Swal.fire({
+              title: 'Error',
+              text: err.message,
+              icon: 'error',
+            });
+          }
+        );
+      } else {
+        this.closebutton.nativeElement.click();
+        Swal.fire({
+          title: 'Error',
+          text: 'Records Not Saved',
+          icon: 'error',
+        });
+      }
+    });
+
     console.log(this.partyForm.value);
   }
 
   onEdit(lists: any) {
-    this.partyForm.controls['Ac_Name'].setValue(lists.Ac_Name);
-    this.partyForm.controls['Ac_Address1'].setValue(lists.Ac_Address1);
-    this.partyForm.controls['Ac_Address2'].setValue(lists.Ac_Address2);
-    this.partyForm.controls['Ac_Address3'].setValue(lists.Ac_Address3);
-    this.partyForm.controls['Ac_Pin_Code'].setValue(lists.Ac_Pin_Code);
-    this.partyForm.controls['Ac_Mobile'].setValue(lists.Ac_Mobile);
-    this.partyForm.controls['Ac_Email'].setValue(lists.Ac_Email);
-    this.partyForm.controls['Ac_GST_Number'].setValue(lists.Ac_GST_Number);
+    this.partyForm.controls['acname'].setValue(lists.Ac_Name);
+    this.partyForm.controls['acaddress1'].setValue(lists.Ac_Address1);
+    this.partyForm.controls['acaddress2'].setValue(lists.Ac_Address2);
+    this.partyForm.controls['acaddress3'].setValue(lists.Ac_Address3);
+    this.partyForm.controls['acpincode'].setValue(lists.Ac_Pin_Code);
+    this.partyForm.controls['acmobile'].setValue(lists.Ac_Mobile);
+    this.partyForm.controls['acemail'].setValue(lists.Ac_Email);
+    this.partyForm.controls['acgstno'].setValue(lists.Ac_GST_Number);
     this.partyForm.controls['destination'].setValue(lists.destination);
     this.partyForm.controls['locking'].setValue(lists.locking);
     this.showEdit = true;
