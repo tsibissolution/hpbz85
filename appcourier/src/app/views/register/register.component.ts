@@ -39,7 +39,7 @@ export class RegisterComponent {
     });
   }
 
-  list: any = [];
+  list: any = []; 
 
   onAddClicked() {
     this.mregisterForm.reset();
