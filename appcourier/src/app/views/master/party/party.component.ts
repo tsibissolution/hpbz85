@@ -126,7 +126,54 @@ export class PartyComponent {
     this.partyForm.controls['acgstno'].setValue(lists.Ac_GST_Number);
     this.partyForm.controls['destination'].setValue(lists.destination);
     this.partyForm.controls['locking'].setValue(lists.locking);
+    this.partyForm.controls['pid'].setValue(lists.pid);
     this.showEdit = true;
     this.showAdd = false;
+  }
+
+  onUpdateSubmit() {
+    Swal.fire({
+      title: 'Are you sure?',
+      text: 'You want to Update this Records!',
+      icon: 'info',
+      showCancelButton: true,
+      confirmButtonColor: '#1ba564',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, Update it!',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.authService.updatePartyRecords(this.partyForm.value).subscribe(
+          (res) => {
+            this.closebutton.nativeElement.click();
+            this.getListitem();
+            this.partyForm.reset();
+            Swal.fire({
+              title: 'Update',
+              text: 'Records Update Successfuly',
+              icon: 'success',
+            });
+            return (this.formdata = res);
+          },
+          (err) => {
+            this.closebutton.nativeElement.click();
+            this.partyForm.reset();
+            Swal.fire({
+              title: 'Error',
+              text: err.message,
+              icon: 'error',
+            });
+          }
+        );
+      } else {
+        this.closebutton.nativeElement.click();
+        Swal.fire({
+          title: 'Error',
+          text: 'Records Not Updated',
+          icon: 'error',
+        });
+      }
+    });
+
+    console.log(this.partyForm.value);
   }
 }

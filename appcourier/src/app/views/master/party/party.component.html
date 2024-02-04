@@ -1,5 +1,10 @@
 <nav class="navbar">
-  <button class="btn" data-bs-toggle="modal" data-bs-target="#partymodal" (click)="onAddClicked()">
+  <button
+    class="btn"
+    data-bs-toggle="modal"
+    data-bs-target="#partymodal"
+    (click)="onAddClicked()"
+  >
     <i class="fa fa-indent text-success"></i>Add
   </button>
 </nav>
@@ -83,7 +88,12 @@
     <td>{{ lists.destination }}</td>
 
     <td class="text-center">
-      <button class="btn" data-bs-toggle="modal" data-bs-target="#partymodal" (click)="onEdit(lists)">
+      <button
+        class="btn"
+        data-bs-toggle="modal"
+        data-bs-target="#partymodal"
+        (click)="onEdit(lists)"
+      >
         <i class="fa fa-edit text-info"></i>
       </button>
       <button class="btn">
@@ -119,7 +129,7 @@
         ></button>
       </div>
       <div class="modal-body">
-        <form [formGroup]="partyForm">          
+        <form [formGroup]="partyForm">
           <div class="row">
             <div class="col">
               <mdb-form-control class="mb-3">
@@ -129,6 +139,7 @@
                   type="text"
                   formControlName="acname"
                   class="form-control form-control-lg"
+                  style="text-transform:uppercase"
                 />
                 <label mdbLabel class="form-label" for="typeText"
                   >Party Name</label
@@ -152,6 +163,7 @@
                   type="text"
                   formControlName="acaddress1"
                   class="form-control form-control-lg"
+                  style="text-transform:uppercase"
                 />
                 <label mdbLabel class="form-label" for="typeText"
                   >Address
@@ -159,9 +171,9 @@
                 <!-- <mdb-error
                   class="text-danger"
                   *ngIf="
-                    mregisterForm.controls['firstname'].invalid &&
-                    (mregisterForm.controls['firstname'].dirty ||
-                      mregisterForm.controls['firstname'].touched)
+                  partyForm.controls['acaddress1'].invalid &&
+                    (partyForm.controls['acaddress1'].dirty ||
+                    partyForm.controls['acaddress1'].touched)
                   "
                   >First name is required</mdb-error
                 > -->
@@ -177,6 +189,7 @@
                   type="text"
                   formControlName="acaddress2"
                   class="form-control form-control-lg"
+                  style="text-transform:uppercase"
                 />
                 <label mdbLabel class="form-label" for="typeText"
                   >Address
@@ -200,6 +213,7 @@
                   type="text"
                   formControlName="acaddress3"
                   class="form-control form-control-lg"
+                  style="text-transform:uppercase"
                 />
                 <label mdbLabel class="form-label" for="typeText"
                   >Address
@@ -225,6 +239,7 @@
                   type="text"
                   formControlName="acgstno"
                   class="form-control form-control-lg"
+                  style="text-transform:uppercase"
                 />
                 <label mdbLabel class="form-label" for="typeText"
                   >GST No.
@@ -249,9 +264,19 @@
                   formControlName="Ac_Address3"
                   class="form-control form-control-lg"
                 /> -->
-                <select class="form-control"  formControlName="destination" mdbInput style="height:38px;">
+                <select
+                  class="form-control"
+                  formControlName="destination"
+                  mdbInput
+                  style="height:38px;"
+                >
                   <option>----Select Destination----</option>
-                  <option *ngFor="let destinations of destination.data" [value]="destinations.id">{{destinations.destination}}</option>
+                  <option
+                    *ngFor="let destinations of destination.data"
+                    [value]="destinations.id"
+                  >
+                    {{ destinations.destination }}
+                  </option>
                 </select>
                 <label mdbLabel class="form-label" for="typeText"
                   >Destination
@@ -342,7 +367,12 @@
             </div>
             <div class="col">
               <mdb-form-control class="mb-3">
-                <select class="form-control" formControlName="locking" mdbInput style="height:38px;">
+                <select
+                  class="form-control"
+                  formControlName="locking"
+                  mdbInput
+                  style="height:38px;"
+                >
                   <option>----Select----</option>
                   <option value="0">No</option>
                   <option value="1">Yes</option>
@@ -361,7 +391,6 @@
                 > -->
               </mdb-form-control>
             </div>
-            
           </div>
         </form>
       </div>
@@ -369,8 +398,22 @@
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
           Close
         </button>
-        <button type="submit" class="btn btn-primary" *ngIf="showAdd" (click)="onAddSubmit()">Add</button>
-        <button type="submit" class="btn btn-success" *ngIf="showEdit" (click)="onAddSubmit()">Update</button>
+        <button
+          type="submit"
+          class="btn btn-primary"
+          *ngIf="showAdd"
+          (click)="onAddSubmit()"
+        >
+          Add
+        </button>
+        <button
+          type="submit"
+          class="btn btn-success"
+          *ngIf="showEdit"
+          (click)="onUpdateSubmit()"
+        >
+          Update
+        </button>
       </div>
     </div>
   </div>

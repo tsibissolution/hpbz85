@@ -18,6 +18,11 @@ export class AuthService {
   createParty(inputdata: any) {
     return this.httpSrvice.post(this.API_URL + 'createNewParty', inputdata);
   }
+
+  updatePartyRecords(inputdata: any) {
+    return this.httpSrvice.post(this.API_URL + 'updateParty', inputdata);
+  }
+
   GetDestination() {
     return this.httpSrvice.get(this.API_URL + 'getAllDestinations');
   }

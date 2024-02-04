@@ -24,7 +24,7 @@ export class AuthHttpInterceptorService implements HttpInterceptor {
 
     if (this.authService.IsLoggedIn()) {
       request = request.clone({
-        setHeaders: { Token: `${userToken}` },
+        setHeaders: { 'Authorization': 'Bearer '+ `${userToken}` },
       });
     }
 
