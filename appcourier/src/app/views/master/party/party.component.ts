@@ -176,4 +176,31 @@ export class PartyComponent {
 
     console.log(this.partyForm.value);
   }
+
+  onDeleteParty(lists: any) {
+    Swal.fire({
+      title: 'Are You Sure?',
+      text: 'You want to this Records!',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Yes Delete it!',
+      confirmButtonColor: '#7066e0',
+      cancelButtonColor: '#d33',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.partyForm.controls['pid'].setValue(lists.pid);
+        this.authService
+          .deleteParty(this.partyForm.value)
+          .subscribe((res) => {
+            this.getListitem();
+            Swal.fire({
+              title: 'Delete',
+              text: 'Records Deleted Successfully',
+              icon: 'success',
+            });
+            return res;
+          });
+      }
+    });
+  }
 }
