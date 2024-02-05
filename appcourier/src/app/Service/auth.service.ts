@@ -31,6 +31,9 @@ export class AuthService {
     return this.httpSrvice.post(this.API_URL + 'deletePartyRecord', inputdata);
   }
 
+  filterSearchParty(inputdata: any) {
+    return this.httpSrvice.post(this.API_URL + 'getFilterDataParty', inputdata);
+  }
   // register
   GetAllMregister() {
     return this.httpSrvice.get(this.API_URL + 'getAllMregister');

@@ -1,8 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { AuthService } from '../../../Service/auth.service';
-import {
-  FormBuilder,
+import {  
   FormControl,
   FormGroup,
   Validators,
@@ -20,7 +19,7 @@ export class PartyComponent {
   formdata: any;
   p: number = 1;
   list: any = [];
-  firstna: any;
+  partyname: any;
   lastna: any;
   mobile: any;
   emal: any;
@@ -32,9 +31,7 @@ export class PartyComponent {
     this.getListitem();
     this.getDestination();
     this.partyForm = new FormGroup({
-      pid: new FormControl('', [Validators.required]),
-      // Ac_AcNo: new FormControl(''),
-      // Ac_Group: new FormControl(''),
+      pid: new FormControl('', [Validators.required]),     
       acname: new FormControl('', [Validators.required]),
       acaddress1: new FormControl(''),
       acaddress2: new FormControl(''),
@@ -46,6 +43,7 @@ export class PartyComponent {
       acacid: new FormControl(''),
       destination: new FormControl(''),
       locking: new FormControl(''),
+      
     });
   }
 
@@ -55,8 +53,27 @@ export class PartyComponent {
       return (this.list = res);
     });
   }
-
-  Search(value: any) {}
+  filterTerm!: string;
+  param: any;
+  Search(value: any) {
+    
+    if ((this.partyname = '')) {
+      
+      this.getListitem();
+    } else {
+      console.log(this.partyname);
+      if (this.partyname == undefined) {
+        this.partyname = '';
+      }
+      this.param = {
+        acname: this.partyname,        
+      };
+      console.log(this.param);
+      this.authService.filterSearchParty(this.param).subscribe((res) => {
+        return (this.list = res);
+      });
+    }
+  }
 
   getDestination() {
     this.authService.GetDestination().subscribe((res) => {
@@ -127,6 +144,7 @@ export class PartyComponent {
     this.partyForm.controls['destination'].setValue(lists.destination);
     this.partyForm.controls['locking'].setValue(lists.locking);
     this.partyForm.controls['pid'].setValue(lists.pid);
+    this.partyForm.controls['partyna'].setValue(lists.partyna);
     this.showEdit = true;
     this.showAdd = false;
   }
@@ -189,17 +207,15 @@ export class PartyComponent {
     }).then((result) => {
       if (result.isConfirmed) {
         this.partyForm.controls['pid'].setValue(lists.pid);
-        this.authService
-          .deleteParty(this.partyForm.value)
-          .subscribe((res) => {
-            this.getListitem();
-            Swal.fire({
-              title: 'Delete',
-              text: 'Records Deleted Successfully',
-              icon: 'success',
-            });
-            return res;
+        this.authService.deleteParty(this.partyForm.value).subscribe((res) => {
+          this.getListitem();
+          Swal.fire({
+            title: 'Delete',
+            text: 'Records Deleted Successfully',
+            icon: 'success',
           });
+          return res;
+        });
       }
     });
   }
