@@ -31,11 +31,7 @@
     </td>
     <td>
       <input
-        type="text"
-        class="form-control"
-        name="partyna"
-        (ngModel)="partyname"
-        (ngModelChange)="Search($event)"
+        type="text" class="form-control" name="firt" [(ngModel)]="firt" (ngModelChange)="Search($event)"
         placeholder="Enter First Name"
         style="height: 26px;font-size: 14px;"
       />
@@ -45,7 +41,7 @@
         type="text"
         class="form-control"
         name="lastna"
-        [(ngModel)]="lastna"
+        [(ngModel)]="la"
         (ngModelChange)="Search($event)"
         placeholder="Enter Last Name"
         style="height: 26px;font-size: 14px;"
@@ -56,7 +52,7 @@
         type="text"
         class="form-control"
         name="mobile"
-        [(ngModel)]="mobile"
+        [(ngModel)]="mob"
         (ngModelChange)="Search($event)"
         placeholder="Enter Mobile No"
         style="height: 26px;font-size: 14px;"
@@ -67,7 +63,7 @@
         type="text"
         class="form-control"
         name="emal"
-        [(ngModel)]="emal"
+        [(ngModel)]="em"
         (ngModelChange)="Search($event)"
         placeholder="Enter Email"
         style="height: 26px;font-size: 14px;"

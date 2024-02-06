@@ -33,12 +33,13 @@ import { MdbValidationModule } from 'mdb-angular-ui-kit/validation';
   ],
   imports: [
     CommonModule,
+    FormsModule,
     MasterRoutingModule,
     AgGridModule,
     MdbValidationModule,
     ReactiveFormsModule,
     NgxPaginationModule,
-    FormsModule,
+    
     MdbRippleModule,
     MdbFormsModule,
     MdbCheckboxModule, 

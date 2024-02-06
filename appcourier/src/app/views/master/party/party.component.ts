@@ -1,11 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { AuthService } from '../../../Service/auth.service';
-import {  
-  FormControl,
-  FormGroup,
-  Validators,
-} from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -19,10 +15,10 @@ export class PartyComponent {
   formdata: any;
   p: number = 1;
   list: any = [];
-  partyname: any;
-  lastna: any;
-  mobile: any;
-  emal: any;
+  firt: any;
+  la: any;
+  mob: any;
+  em: any;
   destination: any = [];
   showAdd!: boolean;
   showEdit!: boolean;
@@ -31,7 +27,7 @@ export class PartyComponent {
     this.getListitem();
     this.getDestination();
     this.partyForm = new FormGroup({
-      pid: new FormControl('', [Validators.required]),     
+      pid: new FormControl('', [Validators.required]),
       acname: new FormControl('', [Validators.required]),
       acaddress1: new FormControl(''),
       acaddress2: new FormControl(''),
@@ -43,7 +39,6 @@ export class PartyComponent {
       acacid: new FormControl(''),
       destination: new FormControl(''),
       locking: new FormControl(''),
-      
     });
   }
 
@@ -56,18 +51,16 @@ export class PartyComponent {
   filterTerm!: string;
   param: any;
   Search(value: any) {
-    
-    if ((this.partyname = '')) {
-      
+    console.log(this.firt);
+    if(this.em =='' && this.firt == ''){
       this.getListitem();
-    } else {
-      console.log(this.partyname);
-      if (this.partyname == undefined) {
-        this.partyname = '';
+    }else{
+      if(this.firt == undefined){
+        this.firt='';
       }
-      this.param = {
-        acname: this.partyname,        
-      };
+      this.param={
+        acname:this.firt,
+      }
       console.log(this.param);
       this.authService.filterSearchParty(this.param).subscribe((res) => {
         return (this.list = res);
