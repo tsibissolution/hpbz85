@@ -52,15 +52,21 @@ export class PartyComponent {
   param: any;
   Search(value: any) {
     console.log(this.firt);
-    if(this.em =='' && this.firt == ''){
+    if (this.mob == undefined) {
+      this.mob = '';
+    }
+    if (this.firt == undefined) {
+      this.firt = '';
+    }   
+    if (this.firt == '' && this.mob == '') {
       this.getListitem();
-    }else{
-      if(this.firt == undefined){
-        this.firt='';
-      }
-      this.param={
-        acname:this.firt,
-      }
+    } else {
+          
+      this.param = {
+        acname: this.firt,
+        acmobile: this.mob,
+        acdestination: ''
+      };
       console.log(this.param);
       this.authService.filterSearchParty(this.param).subscribe((res) => {
         return (this.list = res);
