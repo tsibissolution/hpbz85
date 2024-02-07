@@ -11,7 +11,7 @@ import Swal from 'sweetalert2';
 })
 export class PartyComponent {
   @ViewChild('closebutton') closebutton: any;
-  partyForm!: FormGroup;
+ partyForm!: FormGroup;
   formdata: any;
   p: number = 1;
   list: any = [];
@@ -19,6 +19,7 @@ export class PartyComponent {
   la: any;
   mob: any;
   em: any;
+  destina:any;
   destination: any = [];
   showAdd!: boolean;
   showEdit!: boolean;
@@ -57,15 +58,22 @@ export class PartyComponent {
     }
     if (this.firt == undefined) {
       this.firt = '';
-    }   
-    if (this.firt == '' && this.mob == '') {
+    } 
+    if (this.destina == undefined) {
+      this.destina = '';
+    }
+    if (this.em == undefined) {
+      this.em = '';
+    }  
+    if (this.firt == '' && this.mob == '' && this.destina == '' && this.em == '') {
       this.getListitem();
     } else {
           
       this.param = {
         acname: this.firt,
         acmobile: this.mob,
-        acdestination: ''
+        acdestination: this.destina,
+        acemail:this.em
       };
       console.log(this.param);
       this.authService.filterSearchParty(this.param).subscribe((res) => {
@@ -140,10 +148,10 @@ export class PartyComponent {
     this.partyForm.controls['acmobile'].setValue(lists.Ac_Mobile);
     this.partyForm.controls['acemail'].setValue(lists.Ac_Email);
     this.partyForm.controls['acgstno'].setValue(lists.Ac_GST_Number);
-    this.partyForm.controls['destination'].setValue(lists.destination);
+    this.partyForm.controls['destination'].setValue(lists.id || 126);
     this.partyForm.controls['locking'].setValue(lists.locking);
     this.partyForm.controls['pid'].setValue(lists.pid);
-    this.partyForm.controls['partyna'].setValue(lists.partyna);
+    
     this.showEdit = true;
     this.showAdd = false;
   }
