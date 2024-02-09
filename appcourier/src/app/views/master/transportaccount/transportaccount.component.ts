@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-transportaccount',
@@ -6,5 +7,6 @@ import { Component } from '@angular/core';
   styleUrls: ['./transportaccount.component.css']
 })
 export class TransportaccountComponent {
+  transprtForm!:FormGroup;
 
 }
