@@ -23,16 +23,24 @@ export class AuthService {
     return this.httpSrvice.post(this.API_URL + 'updateParty', inputdata);
   }
 
-  GetDestination() {
-    return this.httpSrvice.get(this.API_URL + 'getAllDestinations');
-  }
-
+  
   deleteParty(inputdata: any) {
     return this.httpSrvice.post(this.API_URL + 'deletePartyRecord', inputdata);
   }
 
   filterSearchParty(inputdata: any) {
     return this.httpSrvice.post(this.API_URL + 'getFilterDataParty', inputdata);
+  }
+  // destinatioina
+
+  GetDestination() {
+    return this.httpSrvice.get(this.API_URL + 'getAllDestinations');
+  }
+
+  // company
+
+  GetAllCompany(){
+    return this.httpSrvice.get(this.API_URL+'getAllCompany');
   }
   // register
   GetAllMregister() {

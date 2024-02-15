@@ -16,7 +16,7 @@
       <th>VSR Address</th>
       <th>VSR Mobile No</th>
       <th>VSR Email</th>
-      <th>VSR Destination</th>
+      <th>VSR Company</th>
       <th>Action</th>
     </tr>
   </thead>
@@ -86,12 +86,12 @@
       let lists of formlist.data | paginate: { itemsPerPage: 10, currentPage: p }
     "
   >
-    <td class="text-center">{{ lists.pid }}</td>
-    <td>{{ lists.Ac_Name }}</td>
-    <td>{{ lists.Ac_Address1 }}<br />{{ lists.Ac_Address2 }}</td>
-    <td>{{ lists.Ac_Mobile }}</td>
-    <td>{{ lists.Ac_Email }}</td>
-    <td>{{ lists.destination }}</td>
+    <td class="text-center">{{ lists.id }}</td>
+    <td>{{ lists.mrname }}</td>
+    <td>{{ lists.mradd }}<br />{{ lists.Ac_Address2 }}</td>
+    <td>{{ lists.mrphone }}</td>
+    <td>{{ lists.mremail }}</td>
+    <td>{{ lists.mrcompany }}</td>
 
     <td class="text-center">
       <button
@@ -143,12 +143,12 @@
                   mdbValidate
                   mdbInput
                   type="text"
-                  formControlName="acname"
+                  formControlName="mrname"
                   class="form-control form-control-lg"
                   style="text-transform:uppercase"
                 />
                 <label mdbLabel class="form-label" for="typeText"
-                  >Party Name</label
+                  >VSR Name</label
                 >
                 <!-- <mdb-error
                   class="text-danger"
@@ -167,12 +167,12 @@
                   mdbValidate
                   mdbInput
                   type="text"
-                  formControlName="acaddress1"
+                  formControlName="mradd"
                   class="form-control form-control-lg"
                   style="text-transform:uppercase"
                 />
                 <label mdbLabel class="form-label" for="typeText"
-                  >Address
+                  >VSR Address
                 </label>
                 <!-- <mdb-error
                   class="text-danger"
@@ -193,12 +193,12 @@
                   mdbValidate
                   mdbInput
                   type="text"
-                  formControlName="acaddress2"
+                  formControlName="mrcity"
                   class="form-control form-control-lg"
                   style="text-transform:uppercase"
                 />
                 <label mdbLabel class="form-label" for="typeText"
-                  >Address
+                  >City
                 </label>
                 <!-- <mdb-error
                   class="text-danger"
@@ -217,12 +217,12 @@
                   mdbValidate
                   mdbInput
                   type="text"
-                  formControlName="acaddress3"
+                  formControlName="mrphone"
                   class="form-control form-control-lg"
                   style="text-transform:uppercase"
                 />
                 <label mdbLabel class="form-label" for="typeText"
-                  >Address
+                  >VSR Phone
                 </label>
                 <!-- <mdb-error
                   class="text-danger"
@@ -243,12 +243,12 @@
                   mdbValidate
                   mdbInput
                   type="text"
-                  formControlName="acgstno"
+                  formControlName="mremail"
                   class="form-control form-control-lg"
                   style="text-transform:uppercase"
                 />
                 <label mdbLabel class="form-label" for="typeText"
-                  >GST No.
+                  >VSR Email
                 </label>
                 <!-- <mdb-error
                   class="text-danger"
@@ -263,128 +263,22 @@
             </div>
             <div class="col">
               <mdb-form-control class="mb-3">
-                <!-- <input
-                  mdbValidate
-                  mdbInput
-                  type="text"
-                  formControlName="Ac_Address3"
-                  class="form-control form-control-lg"
-                /> -->
                 <select
                   class="form-control"
-                  formControlName="destination"
+                  formControlName="mrcompid"
                   mdbInput
                   style="height:38px;"
                 >
-                  <!-- <option>----Select Destination----</option>
+                  <option>----Select Destination----</option>
                   <option
-                    *ngFor="let destinations of destination.data"
-                    [value]="destinations.id"
+                    *ngFor="let companys of company.data"
+                    [value]="companys.id"
                   >
-                    {{ destinations.destination }}
-                  </option> -->
+                    {{ companys.Ac_Company }}
+                  </option>
                 </select>
                 <label mdbLabel class="form-label" for="typeText"
-                  >Destination
-                </label>
-                <!-- <mdb-error
-                  class="text-danger"
-                  *ngIf="
-                    mregisterForm.controls['firstname'].invalid &&
-                    (mregisterForm.controls['firstname'].dirty ||
-                      mregisterForm.controls['firstname'].touched)
-                  "
-                  >First name is required</mdb-error
-                > -->
-              </mdb-form-control>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col">
-              <mdb-form-control class="mb-4">
-                <input
-                  mdbValidate
-                  mdbInput
-                  type="text"
-                  formControlName="acemail"
-                  class="form-control form-control-lg"
-                />
-                <label mdbLabel class="form-label" for="typeText"
-                  >Email Address
-                </label>
-                <!-- <mdb-error
-                  class="text-danger"
-                  *ngIf="
-                    mregisterForm.controls['firstname'].invalid &&
-                    (mregisterForm.controls['firstname'].dirty ||
-                      mregisterForm.controls['firstname'].touched)
-                  "
-                  >First name is required</mdb-error
-                > -->
-              </mdb-form-control>
-            </div>
-            <div class="col">
-              <mdb-form-control class="mb-3">
-                <input
-                  mdbValidate
-                  mdbInput
-                  type="text"
-                  formControlName="acmobile"
-                  class="form-control form-control-lg"
-                />
-                <label mdbLabel class="form-label" for="typeText"
-                  >Mobile No.
-                </label>
-                <!-- <mdb-error
-                  class="text-danger"
-                  *ngIf="
-                    mregisterForm.controls['firstname'].invalid &&
-                    (mregisterForm.controls['firstname'].dirty ||
-                      mregisterForm.controls['firstname'].touched)
-                  "
-                  >First name is required</mdb-error
-                > -->
-              </mdb-form-control>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col">
-              <mdb-form-control class="mb-4">
-                <input
-                  mdbValidate
-                  mdbInput
-                  type="text"
-                  formControlName="acpincode"
-                  class="form-control form-control-lg"
-                />
-                <label mdbLabel class="form-label" for="typeText"
-                  >Pin Code
-                </label>
-                <!-- <mdb-error
-                  class="text-danger"
-                  *ngIf="
-                    mregisterForm.controls['firstname'].invalid &&
-                    (mregisterForm.controls['firstname'].dirty ||
-                      mregisterForm.controls['firstname'].touched)
-                  "
-                  >First name is required</mdb-error
-                > -->
-              </mdb-form-control>
-            </div>
-            <div class="col">
-              <mdb-form-control class="mb-3">
-                <select
-                  class="form-control"
-                  formControlName="locking"
-                  mdbInput
-                  style="height:38px;"
-                >
-                  <option>----Select----</option>
-                  <option value="0">No</option>
-                  <option value="1">Yes</option>
-                </select>
-                <label mdbLabel class="form-label" for="typeText"
-                  >Lock Party</label
+                  >Company Name</label
                 >
                 <!-- <mdb-error
                   class="text-danger"
@@ -397,7 +291,7 @@
                 > -->
               </mdb-form-control>
             </div>
-          </div>
+          </div>          
         </form>
       </div>
       <div class="modal-footer">
