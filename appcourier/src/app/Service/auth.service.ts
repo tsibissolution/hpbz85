@@ -37,6 +37,12 @@ export class AuthService {
     return this.httpSrvice.get(this.API_URL + 'getAllDestinations');
   }
 
+  // mraccount
+
+  GetAllMRAccount(){
+    return this.httpSrvice.get(this.API_URL + 'getAllMrAccount');
+  }
+
   // company
 
   GetAllCompany(){
