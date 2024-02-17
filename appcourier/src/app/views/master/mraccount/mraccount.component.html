@@ -12,11 +12,12 @@
   <thead class="table-dark">
     <tr>
       <th style="width:50px;">Id</th>
-      <th>VSR Name</th>
-      <th>VSR Address</th>
-      <th>VSR Mobile No</th>
-      <th>VSR Email</th>
-      <th>VSR Company</th>
+      <th>Name</th>
+      <th>Address</th>
+      <th>City</th>
+      <th>Mobile</th>
+      <th>Email</th>
+      <th>Company</th>
       <th>Action</th>
     </tr>
   </thead>
@@ -31,8 +32,8 @@
     </td>
     <td>
       <input
-        type="text" class="form-control" name="firt" [(ngModel)]="firt" (ngModelChange)="Search($event)"
-        placeholder="Enter First Name"
+        type="text" class="form-control" name="mrnam" [(ngModel)]="mrnam" (ngModelChange)="Search($event)"
+        placeholder="Enter MR Name"
         style="height: 26px;font-size: 14px;"
       />
     </td>
@@ -88,7 +89,8 @@
   >
     <td class="text-center">{{ lists.id }}</td>
     <td>{{ lists.mrname }}</td>
-    <td>{{ lists.mradd }}<br />{{ lists.Ac_Address2 }}</td>
+    <td>{{ lists.mradd }}</td>
+    <td>{{ lists.mrcity }}</td>
     <td>{{ lists.mrphone }}</td>
     <td>{{ lists.mremail }}</td>
     <td>{{ lists.Ac_Company }}</td>
@@ -98,7 +100,7 @@
         class="btn"
         data-bs-toggle="modal"
         data-bs-target="#partymodal"
-        
+        (click)="onEdit(lists)"
       >
         <i class="fa fa-edit text-info"></i>
       </button>
