@@ -6,19 +6,23 @@ import { HttpClient } from '@angular/common/http';
 @Component({
   selector: 'app-mraccount',
   templateUrl: './mraccount.component.html',
-  styleUrls: ['./mraccount.component.css']
+  styleUrls: ['./mraccount.component.css'],
 })
 export class MraccountComponent {
-
   mrAccForm!: FormGroup;
   formdata: any;
   formlist: any = [];
-  company: any =[];
+  company: any = [];
   showAdd!: boolean;
   showEdit!: boolean;
   p: number = 1;
-constructor(private http: HttpClient, private authService: AuthService ){}
-  ngOnInit(){
+  mrnam: any;
+  comp: any;
+  email: any;
+  mobile: any;
+  mrcty: any;
+  constructor(private http: HttpClient, private authService: AuthService) {}
+  ngOnInit() {
     this.getListMRitem();
     this.getListCompany();
     this.mrAccForm = new FormGroup({
@@ -29,7 +33,6 @@ constructor(private http: HttpClient, private authService: AuthService ){}
       mrphone: new FormControl(''),
       mremail: new FormControl(''),
       mrcompid: new FormControl(''),
-      
     });
   }
 
@@ -40,11 +43,11 @@ constructor(private http: HttpClient, private authService: AuthService ){}
     });
   }
 
-  getListCompany(){
-    this.authService.GetAllCompany().subscribe(res =>{
+  getListCompany() {
+    this.authService.GetAllCompany().subscribe((res) => {
       console.log(res);
-      return this.company=res;
-    })
+      return (this.company = res);
+    });
   }
 
   onEdit(lists: any) {
@@ -54,17 +57,17 @@ constructor(private http: HttpClient, private authService: AuthService ){}
     this.mrAccForm.controls['mrphone'].setValue(lists.mrphone);
     this.mrAccForm.controls['mremail'].setValue(lists.mremail);
     this.mrAccForm.controls['mrcompid'].setValue(lists.mrcompid);
-   
+
     this.showEdit = true;
     this.showAdd = false;
   }
 
-  onUpdateSubmit(){}
-  onAddSubmit(){}
-  Search(value:any){}
-  onAddClicked(){
+  onUpdateSubmit() {}
+  onAddSubmit() {}
+  Search(value: any) {}
+  onAddClicked() {
     this.mrAccForm.reset();
-    this.showAdd=true;
-    this.showEdit= false;
+    this.showAdd = true;
+    this.showEdit = false;
   }
 }

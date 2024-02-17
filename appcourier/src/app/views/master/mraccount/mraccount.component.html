@@ -21,13 +21,13 @@
       <th>Action</th>
     </tr>
   </thead>
-  <!-- <tr>
+ <tr>
     <td>
       <input
         type="text"
         class="form-control"
         placeholder="Enter First Name"
-        style="height: 26px;font-size: 14px;"
+        style="height: 26px;font-size: 14px;" disable
       />
     </td>
     <td>
@@ -41,9 +41,7 @@
       <input
         type="text"
         class="form-control"
-        name="lastna"
-        [(ngModel)]="la"
-        (ngModelChange)="Search($event)"
+        name="lastna"        
         placeholder="Enter Last Name"
         style="height: 26px;font-size: 14px;" disabled
       />
@@ -52,10 +50,10 @@
       <input
         type="text"
         class="form-control"
-        name="mob"
-        [(ngModel)]="mob"
+        name="mrcty"
+        [(ngModel)]="mrcty"
         (ngModelChange)="Search($event)"
-        placeholder="Enter Mobile No"
+        placeholder="Enter City"
         style="height: 26px;font-size: 14px;"
       />
     </td>
@@ -63,10 +61,10 @@
       <input
         type="text"
         class="form-control"
-        name="emal"
-        [(ngModel)]="em"
+        name="mobile"
+        [(ngModel)]="mobile"
         (ngModelChange)="Search($event)"
-        placeholder="Enter Email"
+        placeholder="Enter Mobile"
         style="height: 26px;font-size: 14px;"
       />
     </td>
@@ -74,14 +72,25 @@
       <input
         type="text"
         class="form-control"
-        name="destina"
-        [(ngModel)]="destina"
+        name="email"
+        [(ngModel)]="email"
         (ngModelChange)="Search($event)"
         placeholder="Enter Destination"
         style="height: 26px;font-size: 14px;"
       />
     </td>
-  </tr> -->
+    <td>
+      <input
+        type="text"
+        class="form-control"
+        name="comp"
+        [(ngModel)]="comp"
+        (ngModelChange)="Search($event)"
+        placeholder="Enter Destination"
+        style="height: 26px;font-size: 14px;"
+      />
+    </td>
+  </tr> 
   <tr
     *ngFor="
       let lists of formlist.data | paginate: { itemsPerPage: 10, currentPage: p }
