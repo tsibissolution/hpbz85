@@ -1,7 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../../../Service/auth.service';
 import { HttpClient } from '@angular/common/http';
+import Swal from 'sweetalert2';
+
 
 @Component({
   selector: 'app-mraccount',
@@ -9,6 +11,7 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./mraccount.component.css'],
 })
 export class MraccountComponent {
+  @ViewChild('closebutton') closebutton: any;
   mrAccForm!: FormGroup;
   formdata: any;
   formlist: any = [];
@@ -63,7 +66,47 @@ export class MraccountComponent {
   }
 
   onUpdateSubmit() {}
-  onAddSubmit() {}
+  onAddSubmit() {
+    Swal.fire({
+      title:"Are You Sure?",
+      text:"You want to Save this Records !",
+      icon:"info",
+      showCancelButton: true,
+      confirmButtonColor: '#1ba564',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, Save it!',
+    }).then((result)=>{
+      if (result.isConfirmed){
+        this.authService.createMrAccount(this.mrAccForm.value).subscribe( (res) =>{
+          this.closebutton.nativeElement.click();
+          this.getListMRitem();
+          this.mrAccForm.reset();
+          Swal.fire({
+            title: 'Saved',
+            text: 'Records Saved Successfuly',
+            icon: 'success',
+          });
+          return (this.formdata = res);
+        }, (err) =>{
+          this.closebutton.nativeElement.click();
+          this.mrAccForm.reset();
+          Swal.fire({
+            title: 'Error',
+            text: err.message,
+            icon: 'error',
+          });
+        }
+        );
+      }else{
+        this.closebutton.nativeElement.click();
+        Swal.fire({
+          title: 'Error',
+          text: 'Records Not Saved',
+          icon: 'error', 
+        });
+      }
+    })
+  }
   Search(value: any) {}
   onAddClicked() {
     this.mrAccForm.reset();

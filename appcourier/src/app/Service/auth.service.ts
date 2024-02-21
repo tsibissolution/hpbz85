@@ -43,6 +43,9 @@ export class AuthService {
     return this.httpSrvice.get(this.API_URL + 'getAllMrAccount');
   }
 
+  createMrAccount(inputdata:any){
+    return this.httpSrvice.post(this.API_URL + "createMrAccount" , inputdata);
+  }
   // company
 
   GetAllCompany(){
