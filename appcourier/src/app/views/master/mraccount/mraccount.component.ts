@@ -4,7 +4,6 @@ import { AuthService } from '../../../Service/auth.service';
 import { HttpClient } from '@angular/common/http';
 import Swal from 'sweetalert2';
 
-
 @Component({
   selector: 'app-mraccount',
   templateUrl: './mraccount.component.html',
@@ -60,57 +59,128 @@ export class MraccountComponent {
     this.mrAccForm.controls['mrphone'].setValue(lists.mrphone);
     this.mrAccForm.controls['mremail'].setValue(lists.mremail);
     this.mrAccForm.controls['mrcompid'].setValue(lists.mrcompid);
+    this.mrAccForm.controls['id'].setValue(lists.id);
 
     this.showEdit = true;
     this.showAdd = false;
   }
 
-  onUpdateSubmit() {}
+  onUpdateSubmit() {
+    Swal.fire({
+      title: 'Are You Sure?',
+      text: 'You want to Save this Records !',
+      icon: 'info',
+      showCancelButton: true,
+      confirmButtonColor: '#1ba564',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, Update it!',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.authService.updateMrAccount(this.mrAccForm.value).subscribe(
+          (res) => {
+            this.closebutton.nativeElement.click();
+            console.log(this.mrAccForm.value);
+            this.getListMRitem();
+            this.mrAccForm.reset();
+            
+            Swal.fire({
+              title: 'Update',
+              text: 'Records Updated Successfuly',
+              icon: 'success',
+            });
+            return (this.formdata = res);
+          },
+          (err) => {
+            this.closebutton.nativeElement.click();
+            this.mrAccForm.reset();
+            Swal.fire({
+              title: 'Error',
+              text: err.message,
+              icon: 'error',
+            });
+          }
+        );
+      } else {
+        this.closebutton.nativeElement.click();
+        Swal.fire({
+          title: 'Error',
+          text: 'Records Not Update',
+          icon: 'error',
+        });
+      }
+    });
+  }
   onAddSubmit() {
     Swal.fire({
-      title:"Are You Sure?",
-      text:"You want to Save this Records !",
-      icon:"info",
+      title: 'Are You Sure?',
+      text: 'You want to Save this Records !',
+      icon: 'info',
       showCancelButton: true,
       confirmButtonColor: '#1ba564',
       cancelButtonColor: '#d33',
       confirmButtonText: 'Yes, Save it!',
-    }).then((result)=>{
-      if (result.isConfirmed){
-        this.authService.createMrAccount(this.mrAccForm.value).subscribe( (res) =>{
-          this.closebutton.nativeElement.click();
-          this.getListMRitem();
-          this.mrAccForm.reset();
-          Swal.fire({
-            title: 'Saved',
-            text: 'Records Saved Successfuly',
-            icon: 'success',
-          });
-          return (this.formdata = res);
-        }, (err) =>{
-          this.closebutton.nativeElement.click();
-          this.mrAccForm.reset();
-          Swal.fire({
-            title: 'Error',
-            text: err.message,
-            icon: 'error',
-          });
-        }
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.authService.createMrAccount(this.mrAccForm.value).subscribe(
+          (res) => {
+            this.closebutton.nativeElement.click();
+            this.getListMRitem();
+            this.mrAccForm.reset();
+            Swal.fire({
+              title: 'Saved',
+              text: 'Records Saved Successfuly',
+              icon: 'success',
+            });
+            return (this.formdata = res);
+          },
+          (err) => {
+            this.closebutton.nativeElement.click();
+            this.mrAccForm.reset();
+            Swal.fire({
+              title: 'Error',
+              text: err.message,
+              icon: 'error',
+            });
+          }
         );
-      }else{
+      } else {
         this.closebutton.nativeElement.click();
         Swal.fire({
           title: 'Error',
           text: 'Records Not Saved',
-          icon: 'error', 
+          icon: 'error',
         });
       }
-    })
+    });
   }
   Search(value: any) {}
   onAddClicked() {
     this.mrAccForm.reset();
     this.showAdd = true;
     this.showEdit = false;
+  }
+  onDeleteParty(lists: any) {
+    Swal.fire({
+      title: 'Are You Sure?',
+      text: 'You want to this Records!',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Yes Delete it!',
+      confirmButtonColor: '#7066e0',
+      cancelButtonColor: '#d33',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.mrAccForm.controls['id'].setValue(lists.id);
+        this.authService.deleteMrAccount(this.mrAccForm.value).subscribe((res) => {
+          this.getListMRitem();
+          Swal.fire({
+            title: 'Delete',
+            text: 'Records Deleted Successfully',
+            icon: 'success',
+          });
+          return res;
+        });
+      }
+    });
   }
 }

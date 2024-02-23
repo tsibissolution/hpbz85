@@ -46,6 +46,14 @@ export class AuthService {
   createMrAccount(inputdata:any){
     return this.httpSrvice.post(this.API_URL + "createMrAccount" , inputdata);
   }
+
+  updateMrAccount(inputdata:any){
+    return this.httpSrvice.post(this.API_URL + "updateMrAccount", inputdata);
+  }
+
+  deleteMrAccount(inputdata:any){
+    return this.httpSrvice.post(this.API_URL + "deleteMrAccount", inputdata);
+  }
   // company
 
   GetAllCompany(){
