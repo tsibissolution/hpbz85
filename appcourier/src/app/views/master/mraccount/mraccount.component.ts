@@ -168,6 +168,9 @@ export class MraccountComponent {
     if (this.email == undefined) {
       this.email = '';
     }
+    if (this.comp == undefined) {
+      this.comp = '';
+    }
     if (this.mrnam == '' && this.mobile == '' && this.email == '' && this.mrcty == '') {
       this.getListMRitem();
      } else {
@@ -176,7 +179,8 @@ export class MraccountComponent {
         mrname: this.mrnam,
         mrcity: this.mrcty,
         mrphone: this.mobile,
-        mremail:this.email
+        mremail:this.email,
+        mrcompany: this.comp,
       };
       console.log(this.param);
       this.authService.fiterdataMrAccount(this.param).subscribe((res) => {
