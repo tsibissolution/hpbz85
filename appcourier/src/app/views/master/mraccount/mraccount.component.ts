@@ -153,7 +153,38 @@ export class MraccountComponent {
       }
     });
   }
-  Search(value: any) {}
+
+  param:any;
+  Search(value: any) {
+    if (this.mrnam == undefined) {
+      this.mrnam = '';
+    }
+    if (this.mrcty == undefined) {
+      this.mrcty = '';
+    } 
+    if (this.mobile == undefined) {
+      this.mobile = '';
+    }
+    if (this.email == undefined) {
+      this.email = '';
+    }
+    if (this.mrnam == '' && this.mobile == '' && this.email == '' && this.mrcty == '') {
+      this.getListMRitem();
+     } else {
+          
+      this.param = {
+        mrname: this.mrnam,
+        mrcity: this.mrcty,
+        mrphone: this.mobile,
+        mremail:this.email
+      };
+      console.log(this.param);
+      this.authService.fiterdataMrAccount(this.param).subscribe((res) => {
+        return (this.formlist = res);
+      });
+    }
+
+  }
   onAddClicked() {
     this.mrAccForm.reset();
     this.showAdd = true;

@@ -67,7 +67,7 @@ export class PartyComponent {
     }  
     if (this.firt == '' && this.mob == '' && this.destina == '' && this.em == '') {
       this.getListitem();
-    } else {
+     } else {
           
       this.param = {
         acname: this.firt,

@@ -54,6 +54,10 @@ export class AuthService {
   deleteMrAccount(inputdata:any){
     return this.httpSrvice.post(this.API_URL + "deleteMrAccount", inputdata);
   }
+
+  fiterdataMrAccount(inputdata:any){
+    return this.httpSrvice.post(this.API_URL + "getFilterMrAccountData", inputdata);
+  }
   // company
 
   GetAllCompany(){
