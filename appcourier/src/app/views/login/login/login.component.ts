@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/Service/auth.service';
 import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-login',
@@ -35,6 +36,7 @@ export class LoginComponent {
       this.authService.processLogin(this.loginForm.value).subscribe(
         (res) => {
           this.userdata = res;
+          if (this.userdata.Stat1us === 'Success'){
           sessionStorage.setItem('token', this.userdata.token);
           sessionStorage.setItem('usrname', this.userdata.data[0].username);
           sessionStorage.setItem('name', this.userdata.data[0].firstname +" "+ this.userdata.data[0].lastname);
@@ -42,15 +44,17 @@ export class LoginComponent {
           console.log(this.userdata.data);
           // this.toastr.success("Login Successfull", "Login Status");
           this.roter.navigate(['/dashboard']);
-        },
-        (error) => {
-          this.errormsg = error;
-          console.warn(this.errormsg.error.message);
-          // this.toastr.error(this.errormsg.error.message, "Login Status");
+          }
+          else{
+            console.log(this.userdata);
+            Swal.fire({
+              title: 'Error',
+              text: this.userdata.Message,
+              icon: 'error',
+            });
+          }
         }
       );
-    } else {
-      // this.toastr.error("Invalid Credentials", "Login Error");
-    }
+    } 
   }
 }
